@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -23,7 +24,16 @@ public class Room extends JPanel
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;
-        Images images = new Images();
+        Images images;
+        try
+        {
+            images = new Images();
+        }
+        catch ( IOException e )
+        {
+            e.printStackTrace();
+            return;
+        }
         
         for (int col = 2; col<size-2; col++)
         {
