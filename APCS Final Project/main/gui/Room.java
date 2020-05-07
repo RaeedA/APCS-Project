@@ -19,11 +19,14 @@ public class Room extends JPanel
     
     public void makeLayout(int size, int[][] layout)
     {
+        //Making layout
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
         c.gridy = 0;
+        
+        //Getting images
         Images images;
         try
         {
@@ -35,6 +38,7 @@ public class Room extends JPanel
             return;
         }
         
+        //Floor
         for (int col = 2; col<size-2; col++)
         {
             for (int r = 2; r<size-2; r++)
@@ -47,6 +51,8 @@ public class Room extends JPanel
                 }
             }
         }
+        
+        //Walls
         for (int i = 1; i<size-2; i++)
         {
             c.gridx=1;
@@ -70,6 +76,8 @@ public class Room extends JPanel
             c.gridy=size-2;
             add(new JLabel(images.getBottom()[(int)(Math.random()*4)]),c);
         }
+        
+        //Surrounding with darkness
         for (int col = 0; col<size; col++)
         {
             for (int r = 0; r< size; r++)
@@ -82,5 +90,8 @@ public class Room extends JPanel
                 }
             }
         }
+        
+        //Making torches on walls
+        
     }
 }
