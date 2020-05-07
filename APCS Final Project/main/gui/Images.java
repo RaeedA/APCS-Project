@@ -16,7 +16,7 @@ public class Images
         BufferedImage img = null;
         try
         {
-            File file = new File("gui/Dungeon_Tileset.png");
+            File file = new File("main/Dungeon_Tileset.png");
             img = ImageIO.read(file);
         }
         catch (IOException e)
