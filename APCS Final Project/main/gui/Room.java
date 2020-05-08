@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Point;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -9,9 +10,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Room extends JPanel
-{    
-    public Room(int size)
+{
+    int tTorchD;
+    
+    public Room(int size, int torchDistance)
     {
+        tTorchD = torchDistance;
+        while (size%tTorchD != 0)
+        {
+            size++;
+        }
+        if (size <= tTorchD)
+        {
+            size = tTorchD+1;
+        }
+        size += 5;
+        //System.out.println(size);
         Map map = new Map(size);
         int[][] layout = map.getLayout();
         makeLayout(size, layout);
@@ -53,6 +67,7 @@ public class Room extends JPanel
         }
         
         //Walls
+        
         for (int i = 1; i<size-2; i++)
         {
             c.gridx=1;
@@ -72,7 +87,10 @@ public class Room extends JPanel
         {
             c.gridx=i;
             c.gridy=1;
-            add(new JLabel(images.getBottom()[(int)(Math.random()*4)]),c);
+            if ((i-2)%tTorchD != 0)
+            {
+                add(new JLabel(images.getTop()[(int)(Math.random()*4)]),c);
+            }
             c.gridy=size-2;
             add(new JLabel(images.getBottom()[(int)(Math.random()*4)]),c);
         }
@@ -91,7 +109,16 @@ public class Room extends JPanel
             }
         }
         
-        //Making torches on walls
-        
+        //Making torches on top walls
+        int wallSize = size-4;
+        Point[] torches = new Point[wallSize/tTorchD+1];
+        int num = 0;
+        for (int i = 0; i <= wallSize; i+=tTorchD)
+        {
+            torches[num] = new Point(i+2, 1);
+            num++;
+        }
+        TorchThread torch = new TorchThread(this, torches);
+        torch.start();
     }
 }

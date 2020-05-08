@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -42,10 +44,10 @@ public class Images
         right3 = new ImageIcon(tileSet.getSubimage( 80, 32, 16, 16 ));
         right4 = new ImageIcon(tileSet.getSubimage( 80, 48, 16, 16 ));
         dark = new ImageIcon(tileSet.getSubimage( 128, 112, 16, 16 ));
-        torch1 = new ImageIcon(ImageIO.read(new File("main/images/torch_1.png")));
-        torch2 = new ImageIcon(ImageIO.read(new File("main/images/torch_2.png")));
-        torch3 = new ImageIcon(ImageIO.read(new File("main/images/torch_3.png")));
-        torch4 = new ImageIcon(ImageIO.read(new File("main/images/torch_4.png")));
+        torch1 = new ImageIcon(resize(ImageIO.read(new File("main/images/torch_1.png")), 16, 16));
+        torch2 = new ImageIcon(resize(ImageIO.read(new File("main/images/torch_2.png")), 16, 16));
+        torch3 = new ImageIcon(resize(ImageIO.read(new File("main/images/torch_3.png")), 16, 16));
+        torch4 = new ImageIcon(resize(ImageIO.read(new File("main/images/torch_4.png")), 16, 16));
 
     }
     
@@ -81,4 +83,21 @@ public class Images
     {
         return new ImageIcon[] {torch1, torch2, torch3, torch4};
     }
+    public static ImageIcon combine(ImageIcon bottom, ImageIcon top)
+    {
+        BufferedImage finalImage = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = finalImage.createGraphics();
+        g.drawImage(bottom.getImage(),0,0,null);
+        g.drawImage( top.getImage(), 0, 0, null );
+        g.dispose();
+        return new ImageIcon(finalImage);
+    }
+    public static BufferedImage resize(BufferedImage img, int newW, int newH) { 
+        Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+        BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = dimg.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        return dimg;
+    }  
 }

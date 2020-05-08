@@ -29,16 +29,16 @@ public class Gui extends JFrame
         c.gridx = 0;
         c.gridy = 0;
         
-        Room room1 = new Room(30);
+        Room room1 = new Room(30, 3);
         pane.add(room1,c);
         rooms.add( room1 );
         
-        c.gridx = 1;
+        /*c.gridx = 1;
         c.gridy = 0;
         
         Room room2 = new Room(10);
         pane.add(room2,c);
-        rooms.add( room2 );
+        rooms.add( room2 );*/
         
         pack();
         setMinimumSize(getSize());
