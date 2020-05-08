@@ -15,11 +15,11 @@ public class Images
     private ImageIcon floor1, floor2, floor3, floor4, floor5, floor6, floor7, floor8, leftcorner, rightcorner, bottom1, bottom2, bottom3, bottom4, top1, top2, top3, top4, left1, left2, left3, left4, right1, right2, right3, right4,dark, torch1, torch2, torch3, torch4;
     public Images() throws IOException
     {
-        BufferedImage tileSet = ImageIO.read(new File("main/images/Dungeon_Tileset.png"));
+        BufferedImage tileSet = loadImg("main/images/Dungeon_Tileset.png");
         
-        floor1 = new ImageIcon(tileSet.getSubimage( 96, 0, 16, 16 ));
-        floor2 = new ImageIcon(tileSet.getSubimage( 112, 0, 16, 16 ));
-        floor3 = new ImageIcon(tileSet.getSubimage( 128, 0, 16, 16 ));
+        floor1 = crop(tileSet, 96, 0, 16, 16);
+        floor2 = crop(tileSet, 112, 0, 16, 16 );
+        floor3 = crop(tileSet, 128, 0, 16, 16 );
         floor4 = new ImageIcon(tileSet.getSubimage( 144, 0, 16, 16 ));
         floor5 = new ImageIcon(tileSet.getSubimage( 96, 16, 16, 16 ));
         floor6 = new ImageIcon(tileSet.getSubimage( 112, 16, 16, 16 ));
@@ -100,4 +100,14 @@ public class Images
         g2d.dispose();
         return dimg;
     }  
+    
+    public ImageIcon crop(BufferedImage img, int x, int y, int width, int height)
+    {
+        return new ImageIcon(img.getSubimage( x, y, width, height ));
+    }
+    
+    public BufferedImage loadImg(String path) throws IOException
+    {
+        return ImageIO.read(new File( path ));
+    }
 }
