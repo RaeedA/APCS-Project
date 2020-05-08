@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-public class Gui extends JFrame
+public class Level extends JFrame
 {    
     ArrayList<Room> rooms;
     
-    public Gui(String text)
+    public Level(String text)
     {
         super(text);
         rooms = new ArrayList<Room>();
