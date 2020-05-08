@@ -101,13 +101,22 @@ public class Images
         return dimg;
     }  
     
-    public ImageIcon crop(BufferedImage img, int x, int y, int width, int height)
+    public static ImageIcon crop(BufferedImage img, int x, int y, int width, int height)
     {
         return new ImageIcon(img.getSubimage( x, y, width, height ));
     }
     
-    public BufferedImage loadImg(String path) throws IOException
+    public static BufferedImage loadImg(String path)
     {
-        return ImageIO.read(new File( path ));
+        try
+        {
+            return ImageIO.read(new File( path ));
+        }
+        catch ( IOException e )
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
+        }
     }
 }
