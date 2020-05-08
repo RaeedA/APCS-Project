@@ -1,5 +1,10 @@
 package entities;
 
+import gui.Images;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+
 public abstract class Entity
 {
     protected int x;
@@ -7,19 +12,18 @@ public abstract class Entity
     protected int y;
     
     //TODO: Substitute later
-    protected String image;
+    protected Image image;
     
     public Entity()
     {
         //TODO: Default Constructor
     }
     
-    public Entity(int x, int y, String image)
+    public Entity(int x, int y, String imgPath)
     {
-        //TODO: Fix
         this.x = x;
         this.y = y;
-        this.image = image;
+        this.setImg( imgPath, 64, 288, 32, 32 );
     }
     
     public int getX() {return x;}
@@ -29,8 +33,11 @@ public abstract class Entity
     public void setY( int y ) {this.y = y;}
     
     //TODO: Fix later
-    public String getImg() {return image;}
-    public void setImg(String image) {this.image = image;}
+    public Image getImg() {return image;}
+    public void setImg(String imgPath, int x, int y, int width, int height) 
+    {
+        image = Images.crop( Images.loadImg( imgPath ), x, y, width, height).getImage();
+    }
     
     //TODO: More methods
 }
