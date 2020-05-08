@@ -29,7 +29,7 @@ public class Gui extends JFrame
         c.gridx = 0;
         c.gridy = 0;
         
-        Room room1 = new Room(30, 3);
+        Room room1 = new Room(12, 3);
         pane.add(room1,c);
         rooms.add( room1 );
         
