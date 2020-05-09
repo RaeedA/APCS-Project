@@ -1,46 +1,23 @@
 package gui;
 
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Point;
-import java.io.IOException;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 public class TorchThread extends Thread
 {
-    int num;
-    Torch[] torches;
-    Room room;
-    GridBagLayout layout;
+    private int num;
+    private Torch[] torches;
+    private Room room;
+    private GridBagLayout layout;
     
-    public TorchThread(Room r, Point[] places)
+    public TorchThread(Tile[][] layout, Point[] places, Images image)
     {
-        Images image;
-        try
-        {
-            image = new Images();
-        }
-        catch ( IOException e )
-        {
-            e.printStackTrace();
-            return;
-        }
-        
-        room = r;
-        layout = (GridBagLayout)room.getLayout();
         torches = new Torch[places.length];
         for (int i = 0; i<places.length; i++)
         {
-            GridBagConstraints constraint = new GridBagConstraints();
-            constraint.fill = GridBagConstraints.BOTH;
-            constraint.gridx = places[i].x;
-            constraint.gridy = places[i].y;
-            Torch torch = new Torch(image, constraint);
+            Torch torch = new Torch(image);
             torches[i] = torch;
-            room.add(torch.getLabel(), constraint );
-            torch.update();
+            layout[places[i].x][places[i].y] = new Tile(false, torch.getLabel(), "walltorch");
         }
     }
 
@@ -51,7 +28,7 @@ public class TorchThread extends Thread
         {
             try
             {
-                sleep( 900 );
+                sleep( 200 );
             }
             catch ( InterruptedException e )
             {
@@ -62,7 +39,7 @@ public class TorchThread extends Thread
         
     }
     
-    public void update()
+    private void update()
     {        
         for (int i = 0; i < torches.length; i++)
         {

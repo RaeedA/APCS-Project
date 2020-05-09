@@ -3,122 +3,111 @@ package gui;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Point;
-import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import entities.Entity;
+
 public class Room extends JPanel
 {
-    int tTorchD;
+    Tile[][] layout;
+    ArrayList<Entity> entities;
     
-    public Room(int size, int torchDistance)
+    public Room(int size)
     {
-        tTorchD = torchDistance;
-        while (size%tTorchD != 0)
+        entities = new ArrayList<Entity>(5);
+        Map map = new Map(size, 3);
+        layout = map.getLayout();
+        setLayout(new GridBagLayout());
+        GridBagConstraints con = new GridBagConstraints();
+        con.fill = GridBagConstraints.BOTH;
+        for (int c = 0; c<layout.length; c++)
         {
-            size++;
+            con.gridx=c;
+            for(int r = 0; r<layout[c].length; r++)
+            {
+                con.gridy=r;
+                add(layout[c][r].getLabel(), con);
+            }
         }
-        if (size <= tTorchD)
-        {
-            size = tTorchD+1;
-        }
-        size += 5;
-        //System.out.println(size);
-        Map map = new Map(size);
-        int[][] layout = map.getLayout();
-        makeLayout(size, layout);
     }
     
-    public void makeLayout(int size, int[][] layout)
+    public void add(Point p, Entity entity)
     {
-        //Making layout
-        setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.BOTH;
-        c.gridx = 0;
-        c.gridy = 0;
-        
-        //Getting images
-        Images images;
-        try
+        if (!layout[p.x][p.y].isPassable())
         {
-            images = new Images();
+            p = findEmpty(p);
         }
-        catch ( IOException e )
+        layout[p.x][p.y].setPassable( false );
+        layout[p.x][p.y].setType( entity.getType() + "entity" ); 
+        ImageIcon current = layout[p.x][p.y].getImage();
+        entity.setCurrent( current );
+        layout[p.x][p.y].getLabel().setIcon( Images.combine( current, entity.getImg() ) );
+        entities.add( entity );
+    }
+    
+    public Point findEmpty(Point p)
+    {
+        int distance = 1;
+        Point empty = null;
+        while (true)
         {
-            e.printStackTrace();
-            return;
-        }
-        
-        //Floor
-        for (int col = 2; col<size-2; col++)
-        {
-            for (int r = 2; r<size-2; r++)
+            for (int i = -distance; i<= distance; i++)
             {
-                if (layout[col][r] == 0)
+                try
                 {
-                    c.gridx = col;
-                    c.gridy = r;
-                    add( new JLabel(images.getFloor()[(int)(Math.random()*8)]) ,c);
+                if(layout[p.x+i][p.y+distance].isPassable())
+                {
+                    
+                    return new Point(p.x+i, p.y+distance);
+                }
+                }
+                catch(Exception e)
+                {
+                
+                }
+                try
+                {
+                if(layout[p.x+i][p.y-distance].isPassable())
+                {
+                    
+                    return new Point(p.x+i, p.y-distance);
+                }
+                }
+                catch(Exception e)
+                {
+                
+                }
+                }
+            for (int i = -(distance-1); i<=distance-1; i++)
+            {
+                try
+                {
+                if(layout[p.x+distance][p.y+i].isPassable())
+                {
+                    return new Point(p.x+distance, p.y+i);
+                }
+                }
+                catch(Exception e)
+                {
+                    
+                }
+                try
+                {
+                if(layout[p.x-distance][p.y+i].isPassable())
+                {
+                    return new Point(p.x+distance, p.y+i);
+                }
+                }
+                catch(Exception e)
+                {
+                    
                 }
             }
+            distance++;
         }
-        
-        //Walls
-        
-        for (int i = 1; i<size-2; i++)
-        {
-            c.gridx=1;
-            c.gridy=i;
-            add(new JLabel(images.getLeft()[(int)(Math.random()*4)]),c);
-            c.gridx=size-2;
-            add(new JLabel(images.getRight()[(int)(Math.random()*4)]),c);
-        }
-        ImageIcon[] corners = images.getCorners();
-        c.gridx=1;
-        c.gridy=size-2;
-        add(new JLabel(corners[0]),c);
-        c.gridx=size-2;
-        add(new JLabel(corners[1]),c);
-        
-        for (int i = 2; i<size-2; i++)
-        {
-            c.gridx=i;
-            c.gridy=1;
-            if ((i-2)%tTorchD != 0)
-            {
-                add(new JLabel(images.getTop()[(int)(Math.random()*4)]),c);
-            }
-            c.gridy=size-2;
-            add(new JLabel(images.getBottom()[(int)(Math.random()*4)]),c);
-        }
-        
-        //Surrounding with darkness
-        for (int col = 0; col<size; col++)
-        {
-            for (int r = 0; r< size; r++)
-            {
-                if(col ==0 || r ==0 || col == size-1 || r == size-1)
-                {
-                    c.gridx = col;
-                    c.gridy = r;
-                    add(new JLabel(images.getEmpty()), c);
-                }
-            }
-        }
-        
-        //Making torches on top walls
-        int wallSize = size-4;
-        Point[] torches = new Point[wallSize/tTorchD+1];
-        int num = 0;
-        for (int i = 0; i <= wallSize; i+=tTorchD)
-        {
-            torches[num] = new Point(i+2, 1);
-            num++;
-        }
-        TorchThread torch = new TorchThread(this, torches);
-        torch.start();
     }
 }

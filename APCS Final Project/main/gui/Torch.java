@@ -1,20 +1,16 @@
 package gui;
 
-import java.awt.GridBagConstraints;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class Torch
 {
-    ImageIcon[] images;
-    int num;
-    final GridBagConstraints constraints;
-    JLabel label;
+    private ImageIcon[] images;
+    private int num;
+    private JLabel label;
     
-    public Torch(Images image, GridBagConstraints c)
+    public Torch(Images image)
     {
-        constraints = c;
         ImageIcon wall = image.getTop()[(int)(Math.random()*4)];
         ImageIcon[] temp = image.getFrontTorch();
         images = new ImageIcon[temp.length];
@@ -36,12 +32,9 @@ public class Torch
         }
         label.setIcon( images[num] );
     }
+    
     public JLabel getLabel()
     {
         return label;
-    }
-    public GridBagConstraints getConstraints()
-    {
-        return constraints;
     }
 }

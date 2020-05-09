@@ -1,5 +1,9 @@
 package entities;
 
+import java.awt.Point;
+
+import gui.Room;
+
 public class Character extends Entity
 {
     protected int health;
@@ -10,17 +14,16 @@ public class Character extends Entity
         
     }
     
-    public Character(int x, int y, String image)
+    public Character(Room room, Point p)
     {
-        super(x, y, image);
+        super(room, p, "character");
     }
     
     public int getHealth() {return health;}
     public void setHealth(int health) { this.health = health; }
-    public void moveTo(int x, int y)
+    public void moveTo(Point p)
     {
         //TODO: animation and process
-        this.x = x;
-        this.y = y;
+        setLocation(p);
     }
 }

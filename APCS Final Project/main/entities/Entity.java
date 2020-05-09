@@ -1,42 +1,53 @@
 package entities;
 
-import gui.Images;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
+import gui.Room;
+
+import java.awt.Point;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public abstract class Entity
 {
-    protected int x;
-    
-    protected int y;
-    
-    //TODO: Substitute later
-    protected Image image;
+    protected Point location;
+    protected String type;
+    protected ImageIcon image;
+    protected ImageIcon current;
     
     public Entity()
     {
         //TODO: Default Constructor
     }
     
-    public Entity(int x, int y, String imgPath)
+    public Entity(Room room, Point p, String t)
     {
-        this.x = x;
-        this.y = y;
-        this.setImg( imgPath, 64, 288, 32, 32 );
+        room.add( p, this );
+        location = p;
+        type = t;
     }
     
-    public int getX() {return x;}
-    public void setX( int x ) { this.x = x;}
-    
-    public int getY() {return y;}
-    public void setY( int y ) {this.y = y;}
-    
-    //TODO: Fix later
-    public Image getImg() {return image;}
-    public void setImg(String imgPath, int x, int y, int width, int height) 
+    public Point getLocation()
     {
-        image = Images.crop( Images.loadImg( imgPath ), x, y, width, height).getImage();
+        return location;
+    }
+    public void setLocation(Point p)
+    {
+        location = p;
+    }
+    public String getType()
+    {
+        return type;
+    }
+    public ImageIcon getImg()
+    {
+        return image;
+    }
+    public void setCurrent(ImageIcon icon)
+    {
+        current = icon;
+    }
+    public ImageIcon getCurrent()
+    {
+        return current;
     }
     
     //TODO: More methods
