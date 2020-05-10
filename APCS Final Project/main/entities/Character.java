@@ -15,11 +15,12 @@ public abstract class Character extends Entity
     public Character(Room room, Point p)
     {
         super(room, p);
-        type = "character";
-        image = new Images().getBottom()[0];
     }
     
-    public int getHealth() {return health;}
+    public int getHealth()
+    {
+        return health;
+    }
     public void setHealth(int health) { this.health = health; }
     public void move(Point p)
     {

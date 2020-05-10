@@ -11,14 +11,24 @@ public class Enemy extends Character
         super(room, p);
         image = new Images().getSkeleton()[0];
         type = "enemy";
-        super(room, p, "enemy", new Images().getSkeleton()[0]);
+        room.addEntity(this);
     }
 
     @Override
     public void run()
     {
-        
-        
+        while (true)
+        {
+            try
+            {
+                sleep( 1000 );
+            }
+            catch ( InterruptedException e )
+            {
+                e.printStackTrace();
+            }
+            move(new Point(location.x+1, location.y));
+        }
     }
 
 }

@@ -3,9 +3,12 @@ package gui;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Point;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+
+import entities.Enemy;
 
 public class Level extends JFrame
 {    
@@ -32,6 +35,8 @@ public class Level extends JFrame
         Room room1 = new Room(15);
         pane.add(room1,c);
         rooms.add( room1 );
+        Enemy e1 = new Enemy(room1, new Point(1,5));
+        e1.start();
         
         /*c.gridx = 1;
         c.gridy = 0;

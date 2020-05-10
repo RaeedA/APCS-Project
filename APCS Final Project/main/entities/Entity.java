@@ -17,10 +17,6 @@ public abstract class Entity extends Thread
     {
         room = r;
         location = p;
-        type = null;
-        type = t;
-        r.addEntity(this );
-
     }
     
     @Override
