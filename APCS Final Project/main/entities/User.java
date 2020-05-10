@@ -14,7 +14,7 @@ public class User extends Character
     {
         super(room, p);
         type = "user";
-        image = new Images().getWarrior()[0];
+        image = Images.getWarrior()[0];
     }
     
     public void run()

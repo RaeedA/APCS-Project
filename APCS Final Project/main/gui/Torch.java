@@ -9,10 +9,10 @@ public class Torch
     private int num;
     private JLabel label;
     
-    public Torch(Images image)
+    public Torch()
     {
-        ImageIcon wall = image.getTop()[(int)(Math.random()*4)];
-        ImageIcon[] temp = image.getFrontTorch();
+        ImageIcon wall = Images.getTop()[(int)(Math.random()*4)];
+        ImageIcon[] temp = Images.getFrontTorch();
         images = new ImageIcon[temp.length];
         for (int i = 0; i<4; i++)
         {
