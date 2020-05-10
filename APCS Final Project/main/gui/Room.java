@@ -54,7 +54,7 @@ public class Room extends JPanel
     
     public void move(Entity entity, Point p)
     {
-        if (entity.getLocation().distance( p ) > 1.5 || p.x >= layout.length || p.y >= layout[0].length)
+        if (entity.getLocation().distance( p ) > 1.5 || p.x >= layout.length || p.y >= layout[0].length || !layout[p.x][p.y].isPassable())
         {
             return;
         }
