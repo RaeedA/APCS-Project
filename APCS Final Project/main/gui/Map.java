@@ -28,12 +28,9 @@ public class Map
 
         //Making layout
         layout = new Tile[size][size];
-        
-        //Getting images
-        Images images = new Images();
-        
+                
         //Making floor
-        ImageIcon[] floor = images.getFloor();
+        ImageIcon[] floor = Images.getFloor();
         for (int col = 1; col<size-1; col++)
         {
             for (int r = 1; r<size-1; r++)
@@ -43,8 +40,8 @@ public class Map
         }
         
         //Side Walls
-        ImageIcon[] rwall = images.getRight();
-        ImageIcon[] lwall = images.getLeft();
+        ImageIcon[] rwall = Images.getRight();
+        ImageIcon[] lwall = Images.getLeft();
         for (int r = 0; r<size-1; r++)
         {
             layout[0][r] = new Tile(false, new JLabel(lwall[(int)(Math.random()*4)]), "leftwall");
@@ -52,13 +49,13 @@ public class Map
         }
         
         //Corners
-        ImageIcon[] corners = images.getCorners();
+        ImageIcon[] corners = Images.getCorners();
         layout[0][size-1] = new Tile(false, new JLabel(corners[0]), "cornerwall");
         layout[size-1][size-1] = new Tile(false, new JLabel(corners[1]), "cornerwall");
         
         //Top and bottom walls minus torches
-        ImageIcon[] top = images.getTop();
-        ImageIcon[] bottom = images.getBottom();
+        ImageIcon[] top = Images.getTop();
+        ImageIcon[] bottom = Images.getBottom();
         for (int c = 1; c<size-1; c++)
         {
             if ((c-1)%torchDistance != 0)
@@ -77,7 +74,7 @@ public class Map
             torches[num] = new Point(i+1, 0);
             num++;
         }
-        TorchThread torch = new TorchThread(layout, torches, images);
+        TorchThread torch = new TorchThread(layout, torches);
         torch.start();
     }
     

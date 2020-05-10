@@ -6,12 +6,12 @@ public class TorchThread extends Thread
 {
     private Torch[] torches;
     
-    public TorchThread(Tile[][] layout, Point[] places, Images image)
+    public TorchThread(Tile[][] layout, Point[] places)
     {
         torches = new Torch[places.length];
         for (int i = 0; i<places.length; i++)
         {
-            Torch torch = new Torch(image);
+            Torch torch = new Torch();
             torches[i] = torch;
             layout[places[i].x][places[i].y] = new Tile(false, torch.getLabel(), "walltorch");
         }

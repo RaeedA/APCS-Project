@@ -9,7 +9,7 @@ public class Enemy extends Character
     public Enemy(Room room, Point p)
     {
         super(room, p);
-        image = new Images().getSkeleton()[0];
+        image = Images.getSkeleton()[0];
         type = "enemy";
         room.addEntity(this);
     }
