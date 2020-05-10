@@ -15,10 +15,14 @@ public abstract class Entity extends Thread
     
     public Entity(Room r, Point p)
     {
-        r.add( p, this );
         room = r;
         location = p;
+<<<<<<< HEAD
         type = null;
+=======
+        type = t;
+        r.addEntity(this );
+>>>>>>> branch 'master' of https://github.com/RaeedA/APCS-Project.git
     }
     
     @Override
@@ -47,6 +51,10 @@ public abstract class Entity extends Thread
     public ImageIcon getCurrent()
     {
         return current;
+    }
+    public void move(Point p)
+    {
+        room.move( this, p );
     }
     
     //TODO: More methods
