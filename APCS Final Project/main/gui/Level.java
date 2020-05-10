@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import entities.Enemy;
+import entities.Entity;
+import entities.User;
 
 public class Level extends JFrame
 {    
@@ -37,6 +39,8 @@ public class Level extends JFrame
         rooms.add( room1 );
         Enemy e1 = new Enemy(room1, new Point(1,5));
         e1.start();
+        Entity user = new User(room1, new Point(8, 12));
+        user.start();
         
         /*c.gridx = 1;
         c.gridy = 0;

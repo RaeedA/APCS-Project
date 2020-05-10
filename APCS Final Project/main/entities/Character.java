@@ -17,10 +17,7 @@ public abstract class Character extends Entity
         super(room, p);
     }
     
-    public int getHealth()
-    {
-        return health;
-    }
+    public int getHealth() {return health;}
     public void setHealth(int health) { this.health = health; }
     public void move(Point p)
     {
@@ -29,4 +26,5 @@ public abstract class Character extends Entity
 
     @Override
     public abstract void run();
+    public abstract void update();
 }

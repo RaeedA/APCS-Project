@@ -30,5 +30,10 @@ public class Enemy extends Character
             move(new Point(location.x+1, location.y));
         }
     }
+    
+    public void update()
+    {
+        Point userLocation = 
+    }
 
 }
