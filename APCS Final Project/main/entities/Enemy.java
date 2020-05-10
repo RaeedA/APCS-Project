@@ -8,7 +8,7 @@ public class Enemy extends Entity
 {
     public Enemy(Room room, Point p)
     {
-        super(room, p, "enemy", new Images().getBottom()[0]);
+        super(room, p, "enemy", new Images().getSkeleton()[0]);
     }
 
     @Override

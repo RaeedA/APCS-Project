@@ -17,11 +17,11 @@ public abstract class Entity extends Thread
     
     public Entity(Room r, Point p, String t, ImageIcon img)
     {
-        r.add( p, this );
         room = r;
         image = img;
         location = p;
         type = t;
+        r.addEntity(this );
     }
     
     @Override
@@ -50,6 +50,10 @@ public abstract class Entity extends Thread
     public ImageIcon getCurrent()
     {
         return current;
+    }
+    public void move(Point p)
+    {
+        room.move( this, p );
     }
     
     //TODO: More methods

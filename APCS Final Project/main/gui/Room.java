@@ -35,8 +35,9 @@ public class Room extends JPanel
         }
     }
     
-    public void add(Point p, Entity entity)
+    public void addEntity(Entity entity)
     {
+        Point p = entity.getLocation();
         if (!layout[p.x][p.y].isPassable())
         {
             p = findEmpty(p);
