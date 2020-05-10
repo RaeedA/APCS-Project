@@ -17,12 +17,10 @@ public abstract class Entity extends Thread
     {
         room = r;
         location = p;
-<<<<<<< HEAD
         type = null;
-=======
         type = t;
         r.addEntity(this );
->>>>>>> branch 'master' of https://github.com/RaeedA/APCS-Project.git
+
     }
     
     @Override
