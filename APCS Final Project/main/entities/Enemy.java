@@ -4,17 +4,19 @@ import java.awt.Point;
 import gui.Images;
 import gui.Room;
 
-public class Enemy extends Entity
+public class Enemy extends Character
 {
     public Enemy(Room room, Point p)
     {
-        super(room, p, "enemy", new Images().getBottom()[0]);
+        super(room, p);
+        image = new Images().getSkeleton()[0];
+        type = "enemy";
     }
 
     @Override
     public void run()
     {
-        // TODO Auto-generated method stub
+        
         
     }
 

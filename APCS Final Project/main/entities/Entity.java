@@ -11,17 +11,14 @@ public abstract class Entity extends Thread
     protected String type;
     protected ImageIcon image;
     protected ImageIcon current;
-    protected int health;
-    protected int attackDamage;
     protected Room room;
     
-    public Entity(Room r, Point p, String t, ImageIcon img)
+    public Entity(Room r, Point p)
     {
         r.add( p, this );
         room = r;
-        image = img;
         location = p;
-        type = t;
+        type = null;
     }
     
     @Override

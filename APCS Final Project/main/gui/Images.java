@@ -51,7 +51,7 @@ public class Images
         warrior2 = resize(loadImg("main/images/warrior_2.png"), 32, 32);
         warrior3 = resize(loadImg("main/images/warrior_3.png"), 32, 32);
         warrior4 = resize(loadImg("main/images/warrior_4.png"), 32, 32);
-        skeleton1 = resize(loadImg("main/images/sksleton_1.png"), 32, 32);
+        skeleton1 = resize(loadImg("main/images/skeleton_1.png"), 32, 32);
         skeleton2 = resize(loadImg("main/images/skeleton_2.png"), 32, 32);
         skeleton3 = resize(loadImg("main/images/skeleton_3.png"), 32, 32);
         skeleton4 = resize(loadImg("main/images/skeleton_4.png"), 32, 32);

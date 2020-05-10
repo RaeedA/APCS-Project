@@ -1,15 +1,22 @@
 package entities;
 
 import java.awt.Point;
+
+import javax.swing.ImageIcon;
+
 import gui.Images;
 import gui.Room;
 
-public class Character extends Entity
+public abstract class Character extends Entity
 {
+    protected int health;
+    protected int attackDamage;
     
     public Character(Room room, Point p)
     {
-        super(room, p, "character", new Images().getBottom()[0]);
+        super(room, p);
+        type = "character";
+        image = new Images().getBottom()[0];
     }
     
     public int getHealth() {return health;}
@@ -20,9 +27,5 @@ public class Character extends Entity
     }
 
     @Override
-    public void run()
-    {
-        // TODO Auto-generated method stub
-        
-    }
+    public abstract void run();
 }

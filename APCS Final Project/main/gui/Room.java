@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import entities.Entity;
+import entities.User;
+import entities.Character;
 
 @SuppressWarnings("serial")
 public class Room extends JPanel
