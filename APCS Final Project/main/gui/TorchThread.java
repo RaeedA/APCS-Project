@@ -1,14 +1,10 @@
 package gui;
 
-import java.awt.GridBagLayout;
 import java.awt.Point;
 
 public class TorchThread extends Thread
 {
-    private int num;
     private Torch[] torches;
-    private Room room;
-    private GridBagLayout layout;
     
     public TorchThread(Tile[][] layout, Point[] places, Images image)
     {

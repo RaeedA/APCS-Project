@@ -4,26 +4,28 @@ import gui.Room;
 
 import java.awt.Point;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
-public abstract class Entity
+public abstract class Entity extends Thread
 {
     protected Point location;
     protected String type;
     protected ImageIcon image;
     protected ImageIcon current;
+    protected int health;
+    protected int attackDamage;
+    protected Room room;
     
-    public Entity()
+    public Entity(Room r, Point p, String t, ImageIcon img)
     {
-        //TODO: Default Constructor
-    }
-    
-    public Entity(Room room, Point p, String t)
-    {
-        room.add( p, this );
+        r.add( p, this );
+        room = r;
+        image = img;
         location = p;
         type = t;
     }
+    
+    @Override
+    public abstract void run();
     
     public Point getLocation()
     {

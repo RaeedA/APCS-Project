@@ -6,11 +6,11 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import entities.Entity;
 
+@SuppressWarnings("serial")
 public class Room extends JPanel
 {
     Tile[][] layout;
@@ -49,10 +49,22 @@ public class Room extends JPanel
         entities.add( entity );
     }
     
+    public void move(Entity entity, Point p)
+    {
+        if (entity.getLocation().distance( p ) > 1.5 || p.x >= layout.length || p.y >= layout[0].length)
+        {
+            return;
+        }
+        layout[entity.getLocation().x][entity.getLocation().y].getLabel().setIcon(entity.getCurrent());
+        entity.setCurrent( layout[p.x][p.y].getImage() );
+        layout[p.x][p.y].getLabel().setIcon( Images.combine(layout[p.x][p.y].getImage(),entity.getImg() ));
+        entity.setLocation( p );
+        
+    }
+    
     public Point findEmpty(Point p)
     {
         int distance = 1;
-        Point empty = null;
         while (true)
         {
             for (int i = -distance; i<= distance; i++)

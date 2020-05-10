@@ -1,29 +1,28 @@
 package entities;
 
 import java.awt.Point;
-
+import gui.Images;
 import gui.Room;
 
 public class Character extends Entity
 {
-    protected int health;
-    protected int attackDamage;
-    
-    public Character()
-    {
-        
-    }
     
     public Character(Room room, Point p)
     {
-        super(room, p, "character");
+        super(room, p, "character", new Images().getBottom()[0]);
     }
     
     public int getHealth() {return health;}
     public void setHealth(int health) { this.health = health; }
-    public void moveTo(Point p)
+    public void move(Point p)
     {
-        //TODO: animation and process
-        setLocation(p);
+        room.move(this, p);
+    }
+
+    @Override
+    public void run()
+    {
+        // TODO Auto-generated method stub
+        
     }
 }

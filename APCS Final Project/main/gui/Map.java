@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.Point;
-import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -31,16 +30,7 @@ public class Map
         layout = new Tile[size][size];
         
         //Getting images
-        Images images;
-        try
-        {
-            images = new Images();
-        }
-        catch ( IOException e )
-        {
-            e.printStackTrace();
-            return;
-        }
+        Images images = new Images();
         
         //Making floor
         ImageIcon[] floor = images.getFloor();

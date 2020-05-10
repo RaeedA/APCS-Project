@@ -38,6 +38,10 @@ public class Tile
     }
     public ImageIcon getImage()
     {
+        if (myLabel.getIcon() == null)
+        {
+            return new ImageIcon();
+        }
         return (ImageIcon)myLabel.getIcon();
     }
     public String toString()

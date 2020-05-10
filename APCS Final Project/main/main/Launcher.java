@@ -12,7 +12,7 @@ public class Launcher
             @Override
             public void run()
             {
-                Level frame = new Level("gui");
+                Level lvl = new Level("gui");
             }
             
         });
