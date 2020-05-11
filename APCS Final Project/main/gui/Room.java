@@ -58,9 +58,15 @@ public class Room extends JPanel
         {
             return;
         }
-        layout[entity.getLocation().x][entity.getLocation().y].getLabel().setIcon(entity.getCurrent());
-        entity.setCurrent( layout[p.x][p.y].getImage() );
-        layout[p.x][p.y].getLabel().setIcon( Images.combine(layout[p.x][p.y].getImage(),entity.getImg() ));
+        Tile newTile = layout[p.x][p.y];
+        Tile current = layout[entity.getLocation().x][entity.getLocation().y];
+        newTile.setPassable( false );
+        newTile.setType( entity.getType() + "entity" );
+        current.setPassable( true );
+        current.setType( "floor" );
+        current.getLabel().setIcon(entity.getCurrent());
+        entity.setCurrent( newTile.getImage() );
+        newTile.getLabel().setIcon( Images.combine(newTile.getImage(),entity.getImg() ));
         entity.setLocation( p );
         
     }

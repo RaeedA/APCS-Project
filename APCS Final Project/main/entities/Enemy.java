@@ -16,7 +16,7 @@ public class Enemy extends Character
         type = "enemy";
         room.addEntity(this);
         //TODO: base randDEcision on difficuly
-        difficulty = 5;
+        difficulty = 50;
         randDecision = (int) (Math.random() * 100);
     }
 
@@ -36,7 +36,7 @@ public class Enemy extends Character
             }
             else if(randDecision < difficulty)
             {
-                charSleep( 500 );
+                charSleep( 200 );
                 update();
                 randDecision = randDecision - (int) (Math.random() * 2 + 1);
             }
