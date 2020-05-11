@@ -84,6 +84,18 @@ public class Room extends JPanel
         return null;
     }
     
+    public Entity getEntityAtPoint( Point location )
+    {
+        for( Entity entity : entities)
+        {
+            if(entity.getLocation().equals( location ))
+            {
+                return entity;
+            }
+        }
+        return null;
+    }
+    
     public Point findEmpty(Point p)
     {
         int distance = 1;

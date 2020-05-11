@@ -18,22 +18,42 @@ public class User extends Character
     {
         super(room, p);
         type = "user";
+        health = 100;
         image = Images.getWarrior()[0];
         room.addEntity( this );
     }
     
     public void run()
     {
-        while(true)
+        while(isAlive)
         {
             charSleep( 200 );
+            if(health < 0)
+            {
+                isAlive = false;
+                System.out.println("User is dead");
+            }
             update();
+            
         }
     }
     
     public void update()
     {
-        move( new Point(getLocation().x + dx, getLocation().y + dy));
+        front = new Point(getLocation().x + dx, getLocation().y + dy);
+        move( front );
+        if(isAttacking)
+        {
+            entityAtFront = room.getEntityAtPoint( front );
+            if(entityAtFront instanceof Character)
+            {
+                charToAttack = (Character) entityAtFront;
+            }
+            if(charToAttack != null && charToAttack.getType().equals( "enemy" ) )
+            {
+                charToAttack.receiveAttack( (int) (attackDamage * Math.random()));
+            }
+        }
     }
     
     
@@ -61,6 +81,7 @@ public class User extends Character
     {
         this.dy = dy;
     }
+    
 
     
     

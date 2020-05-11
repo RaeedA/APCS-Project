@@ -70,20 +70,23 @@ public class Level extends JFrame implements KeyListener
     public void keyPressed( KeyEvent e )
     {
         int key = e.getKeyCode();
+        User myUser = (User)user;
         switch(key)
         {
             case KeyEvent.VK_UP:
-                ((User)user).setDy(-1);
+                myUser.setDy(-1);
                 break;
             case KeyEvent.VK_DOWN:
-                ((User)user).setDy(1);
+                myUser.setDy(1);
                 break;
             case KeyEvent.VK_RIGHT:
-                ((User)user).setDx(1);
+                myUser.setDx(1);
                 break;
             case KeyEvent.VK_LEFT:
-                ((User)user).setDx(-1);
+                myUser.setDx(-1);
                 break;
+            case KeyEvent.VK_Z:
+                myUser.setIsAttacking( true );
             default:
                 break;
         }
@@ -94,20 +97,23 @@ public class Level extends JFrame implements KeyListener
     public void keyReleased( KeyEvent e )
     {
         int key = e.getKeyCode();
+        User myUser = (User)user;
         switch(key)
         {
             case KeyEvent.VK_UP:
-                ((User)user).setDy(0);
+                myUser.setDy(0);
                 break;
             case KeyEvent.VK_DOWN:
-                ((User)user).setDy(0);
+                myUser.setDy(0);
                 break;
             case KeyEvent.VK_RIGHT:
-                ((User)user).setDx(0);
+                myUser.setDx(0);
                 break;
             case KeyEvent.VK_LEFT:
-                ((User)user).setDx(0);
+                myUser.setDx(0);
                 break;
+            case KeyEvent.VK_Z:
+                myUser.setIsAttacking( false );
             default:
                 break;
         }
