@@ -3,6 +3,8 @@ package entities;
 import java.awt.Point;
 
 import javax.swing.ImageIcon;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import gui.Images;
 import gui.Room;
@@ -10,11 +12,14 @@ import gui.Room;
 public class User extends Character
 {
     private int score;
+    private int dx = 0;
+    private int dy = 0;
     public User( Room room, Point p )
     {
         super(room, p);
         type = "user";
         image = Images.getWarrior()[0];
+        room.addEntity( this );
     }
     
     public void run()
@@ -35,8 +40,8 @@ public class User extends Character
     
     public void update()
     {
-        
     }
+    
     
     public int getScore()
     {
@@ -52,6 +57,7 @@ public class User extends Character
     {
         score += points;
     }
+
     
     
 }

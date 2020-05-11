@@ -54,4 +54,6 @@ public class Level extends JFrame
         setSize(getSize().width+30, getSize().height+30);
         setVisible( true );
     }
+    
+    
 }

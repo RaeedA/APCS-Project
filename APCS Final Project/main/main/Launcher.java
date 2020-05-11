@@ -12,7 +12,7 @@ public class Launcher
             @Override
             public void run()
             {
-                Level lvl = new Level("gui");
+                Game game = new Game();
             }
             
         });

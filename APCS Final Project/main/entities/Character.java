@@ -11,6 +11,7 @@ public abstract class Character extends Entity
 {
     protected int health;
     protected int attackDamage;
+    protected int iconNum;
     
     public Character(Room room, Point p)
     {
@@ -22,6 +23,17 @@ public abstract class Character extends Entity
     public void move(Point p)
     {
         room.move(this, p);
+    }
+    public void charSleep( int duration )
+    {
+        try
+        {
+            sleep( duration );
+        }
+        catch ( InterruptedException e )
+        {
+            e.printStackTrace();
+        }
     }
 
     @Override
