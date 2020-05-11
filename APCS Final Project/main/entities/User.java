@@ -44,6 +44,7 @@ public class User extends Character
         move( front );
         if(isAttacking)
         {
+            //TODO: incorrect: fix later
             entityAtFront = room.getEntityAtPoint( front );
             if(entityAtFront instanceof Character)
             {
