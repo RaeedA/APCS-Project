@@ -26,20 +26,14 @@ public class User extends Character
     {
         while(true)
         {
-            try
-            {
-                sleep( 200 );
-            }
-            catch ( InterruptedException e )
-            {
-                e.printStackTrace();
-            }
+            charSleep( 200 );
             update();
         }
     }
     
     public void update()
     {
+        move( new Point(getLocation().x + dx, getLocation().y + dy));
     }
     
     
@@ -56,6 +50,16 @@ public class User extends Character
     public void addToScore(int points)
     {
         score += points;
+    }
+    
+    public void setDx( int dx )
+    {
+        this.dx = dx;
+    }
+    
+    public void setDy( int dy )
+    {
+        this.dy = dy;
     }
 
     
