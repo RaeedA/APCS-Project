@@ -9,6 +9,7 @@ public class Enemy extends Character
 {
     private int randDecision;
     private int difficulty;
+    private int score;
     public Enemy(Room room, Point p)
     {
         super(room, p);
@@ -17,6 +18,7 @@ public class Enemy extends Character
         difficulty = 50;
         images = Images.getSkeleton();
         image = images[0];
+        score = 0;
         randDecision = (int) (Math.random() * 100);
         room.addEntity(this);
     }
@@ -75,8 +77,9 @@ public class Enemy extends Character
                 move( new Point(myX, myY + 1 ));
             }
         }
-        
     }
-    
-
+    public int getScore()
+    {
+        return score;
+    }
 }

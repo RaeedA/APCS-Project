@@ -49,13 +49,14 @@ public abstract class Character extends Entity
         }
     }
 
-    protected void attack(Character c)
+    protected boolean attack(Character c)
     {
         if( c.getLocation().distance( location ) > 1.5 )
         {
-            return;
+            return false;
         }
         c.setHealth( c.getHealth()-attackDamage );
+        return c.health < 0;
     }
 
     protected void die()

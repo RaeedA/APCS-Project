@@ -34,7 +34,10 @@ public class User extends Character
             Entity surrounding = room.getAdjacent( location );
             if(surrounding instanceof Enemy)
             {
-                attack((Character)surrounding);
+                if (attack((Character)surrounding))
+                {
+                    addToScore(( (Enemy)surrounding ).getScore());
+                }
             }
         }
         if(moving)
