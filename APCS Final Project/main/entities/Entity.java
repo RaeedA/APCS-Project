@@ -38,10 +38,6 @@ public abstract class Entity extends Thread
     {
         return image;
     }
-    public void setImg( ImageIcon img)
-    {
-        image = img;
-    }
     public void setCurrent(ImageIcon icon)
     {
         current = icon;
@@ -50,7 +46,7 @@ public abstract class Entity extends Thread
     {
         return current;
     }
-    public void move(Point p)
+    protected void move(Point p)
     {
         room.move( this, p );
     }

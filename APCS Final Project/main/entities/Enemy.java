@@ -1,6 +1,7 @@
 package entities;
 
 import java.awt.Point;
+
 import gui.Images;
 import gui.Room;
 
@@ -8,15 +9,16 @@ public class Enemy extends Character
 {
     private int randDecision;
     private int difficulty;
+    private int score;
     public Enemy(Room room, Point p)
     {
         super(room, p);
-        iconNum = (int)(Math.random() * 4) -1;
-        image = Images.getSkeleton()[0];
         type = "enemy";
-        room.addEntity(this);
-        //TODO: base randDEcision on difficuly
-        difficulty = 5;
+        health = 100;
+        difficulty = 50;
+        images = Images.getSkeleton();
+        image = images[0];
+        score = 0;
         randDecision = (int) (Math.random() * 100);
     }
 
@@ -48,9 +50,26 @@ public class Enemy extends Character
             }
         }
         
+        room.addEntity(this);
     }
     
     public void update()
+    {
+        if(randDecision < difficulty)
+        {
+            moveToPlayer();
+        }
+        else
+        {
+            idle();
+        }
+        randDecision = (int) (Math.random() * 100);
+    }
+    public int getScore()
+    {
+        return score;
+    }
+    public void moveToPlayer()
     {
         Point userLocation = room.getUser().getLocation();
         int myX = getLocation().x;
@@ -79,18 +98,5 @@ public class Enemy extends Character
                 move( new Point(myX, myY + 1 ));
             }
         }
-        
     }
-    
-    public void idle()
-    {
-        iconNum++;
-        if( iconNum == 4)
-        {
-            iconNum = 0;
-        }
-        room.redraw( this, Images.getSkeleton()[ iconNum ]);
-    }
-    
-
 }
