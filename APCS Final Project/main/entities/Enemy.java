@@ -22,33 +22,24 @@ public class Enemy extends Character
         randDecision = (int) (Math.random() * 100);
         room.addEntity(this);
     }
-
-    @Override
-    public void run()
-    {
-        while (isAlive)
-        {
-            charSleep( 200 );
-            if(health < 0)
-            {
-                System.out.print( "enemy is dead" );
-                isAlive = false;
-            }
-            else if(randDecision < difficulty)
-            {
-                update();
-                randDecision = randDecision - (int) (Math.random() * 2 + 1);
-            }
-            else
-            {
-                idle();
-            }
-            randDecision = (int) (Math.random() * 100);
-        }
-        die();
-    }
     
     public void update()
+    {
+        if(randDecision < difficulty)
+        {
+            moveToPlayer();
+        }
+        else
+        {
+            idle();
+        }
+        randDecision = (int) (Math.random() * 100);
+    }
+    public int getScore()
+    {
+        return score;
+    }
+    public void moveToPlayer()
     {
         Point userLocation = room.getUser().getLocation();
         int myX = getLocation().x;
@@ -77,9 +68,5 @@ public class Enemy extends Character
                 move( new Point(myX, myY + 1 ));
             }
         }
-    }
-    public int getScore()
-    {
-        return score;
     }
 }
