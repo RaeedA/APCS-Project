@@ -31,6 +31,7 @@ public class Enemy extends Character
             if(health < 0)
             {
                 isAlive = false;
+                
                 System.out.print( "enemy is dead" );
             }
             else if(randDecision < 0)
@@ -50,6 +51,7 @@ public class Enemy extends Character
                 randDecision--;
             }
         }
+        die();
         
         
     }
