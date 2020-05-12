@@ -42,7 +42,15 @@ public class Level extends JFrame implements KeyListener
         pane.add(room1,c);
         rooms.add( room1 );
         Enemy e1 = new Enemy(room1, new Point(1,5));
+        Enemy e2 = new Enemy(room1, new Point(4, 7));
+        Enemy e3 = new Enemy(room1, new Point(8, 11));
         e1.start();
+        e2.start();
+        e3.start();
+        for(int i = 0; i < Math.random() * 10 + 1; i++)
+        {
+            (new Enemy(room1, new Point((int) (Math.random() * 13) + 1, (int) (Math.random() * 13) + 1))).start();
+        }
         user = new User(room1, new Point(8, 12));
         user.start();
         

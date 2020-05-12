@@ -36,7 +36,7 @@ public class Enemy extends Character
             }
             else if(randDecision < difficulty)
             {
-                charSleep( 500 );
+                charSleep( 400 );
                 update();
                 randDecision = randDecision - (int) (Math.random() * 2 + 1);
             }
