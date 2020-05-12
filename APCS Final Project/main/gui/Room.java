@@ -96,6 +96,7 @@ public class Room extends JPanel
         layout[e.getLocation().x][e.getLocation().y].setPassable( true );
         layout[e.getLocation().x][e.getLocation().y].setType( "floor" );
         layout[e.getLocation().x][e.getLocation().y].getLabel().setIcon( e.getCurrent() );
+        
     }
     
     public void redraw( Entity entity, ImageIcon img )

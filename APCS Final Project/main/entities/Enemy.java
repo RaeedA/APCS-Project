@@ -25,6 +25,7 @@ public class Enemy extends Character
     @Override
     public void run()
     {
+        room.addEntity(this);
         while (isAlive)
         {
             if(health < 0)
@@ -50,7 +51,7 @@ public class Enemy extends Character
             }
         }
         
-        room.addEntity(this);
+        
     }
     
     public void update()

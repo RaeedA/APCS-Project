@@ -59,8 +59,6 @@ public class Level extends JFrame implements KeyListener
         setMinimumSize(getSize());
         setSize(getSize().width+30, getSize().height+30);
         setVisible( true );
-        user = new User(room1, new Point(8, 12));
-        user.start();
     }
 
     @Override
@@ -90,7 +88,7 @@ public class Level extends JFrame implements KeyListener
                 user.setMoving( true );
                 user.setDx(-1);
                 break;
-            case KeyEvent.VK_Q:
+            case KeyEvent.VK_Z:
                 user.setAttacking( true );
                 break;
             default:
@@ -121,7 +119,7 @@ public class Level extends JFrame implements KeyListener
                 user.setMoving( false );
                 user.setDx(0);
                 break;
-            case KeyEvent.VK_Q:
+            case KeyEvent.VK_Z:
                 user.setAttacking( false) ;
                 break;
             default:
