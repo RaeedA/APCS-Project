@@ -4,42 +4,40 @@ import java.awt.Point;
 
 import javax.swing.ImageIcon;
 
-import gui.Images;
 import gui.Room;
 
 public abstract class Character extends Entity
 {
     protected int health;
     protected int attackDamage;
-    protected int iconNum;
-    protected boolean isAttacking;
     protected boolean isAlive;
+    protected int iconNum;
     protected Point front;
-    protected Character charToAttack;
-    protected Entity entityAtFront;
+    protected ImageIcon[] images;
     
     public Character(Room room, Point p)
     {
         super(room, p);
-        isAttacking = false;
+        iconNum = (int)(Math.random() * 4) -1;
         isAlive = true;              
     }
     
-    public int getHealth() {return health;}
-    public void setHealth(int health) { this.health = health; }
-    public void move(Point p)
+    protected int getHealth()
+    {
+        return health;
+    }
+    
+    protected void setHealth(int health)
+    {
+        this.health = health;
+    }
+    
+    protected void move(Point p)
     {
         room.move(this, p);
     }
-    public void setIsAttacking( boolean isAttacking )
-    {
-        this.isAttacking = isAttacking;
-    }
-    public void receiveAttack( int damageInflicted )
-    {
-        health -= damageInflicted;
-    }
-    public void charSleep( int duration )
+    
+    protected void charSleep( int duration )
     {
         try
         {
@@ -51,7 +49,45 @@ public abstract class Character extends Entity
         }
     }
 
+    protected void attack(Character c)
+    {
+        if( c.getLocation().distance( location ) > 1.5 )
+        {
+            return;
+        }
+        c.setHealth( c.getHealth()-attackDamage );
+    }
+
+    protected void die()
+    {
+        room.kill(this);
+    }
+    
+    protected void idle()
+    {
+        iconNum++;
+        if( iconNum == 4)
+        {
+            iconNum = 0;
+        }
+        room.redraw( this, images[ iconNum ]);
+    }
+    
     @Override
-    public abstract void run();
+    public void run()
+    {
+        while(isAlive)
+        {
+            charSleep( 200 );
+            if(health < 0)
+            {
+                isAlive = false;
+                System.out.println(getType() + " is dead");
+            }
+            update(); 
+        }
+        die();
+    }
+    
     public abstract void update();
 }

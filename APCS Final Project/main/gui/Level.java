@@ -17,7 +17,7 @@ import entities.User;
 public class Level extends JFrame implements KeyListener
 {    
     ArrayList<Room> rooms;
-    private Entity user;
+    private User user;
     
     public Level(String text)
     {
@@ -41,10 +41,6 @@ public class Level extends JFrame implements KeyListener
         Room room1 = new Room(15);
         pane.add(room1,c);
         rooms.add( room1 );
-        Enemy e1 = new Enemy(room1, new Point(1,5));
-        e1.start();
-        user = new User(room1, new Point(8, 12));
-        user.start();
         
         /*c.gridx = 1;
         c.gridy = 0;
@@ -57,36 +53,43 @@ public class Level extends JFrame implements KeyListener
         setMinimumSize(getSize());
         setSize(getSize().width+30, getSize().height+30);
         setVisible( true );
+
+        Enemy e1 = new Enemy(room1, new Point(1,5));
+        e1.start();
+        user = new User(room1, new Point(8, 12));
+        user.start();
     }
 
     @Override
     public void keyTyped( KeyEvent e )
     {
-        // TODO Auto-generated method stub
-        
     }
 
     @Override
     public void keyPressed( KeyEvent e )
     {
         int key = e.getKeyCode();
-        User myUser = (User)user;
         switch(key)
         {
             case KeyEvent.VK_UP:
-                myUser.setDy(-1);
+                user.setMoving( true );
+                user.setDy(-1);
                 break;
             case KeyEvent.VK_DOWN:
-                myUser.setDy(1);
+                user.setMoving( true );
+                user.setDy(1);
                 break;
             case KeyEvent.VK_RIGHT:
-                myUser.setDx(1);
+                user.setMoving( true );
+                user.setDx(1);
                 break;
             case KeyEvent.VK_LEFT:
-                myUser.setDx(-1);
+                user.setMoving( true );
+                user.setDx(-1);
                 break;
-            case KeyEvent.VK_Z:
-                myUser.setIsAttacking( true );
+            case KeyEvent.VK_Q:
+                user.setAttacking( true );
+                break;
             default:
                 break;
         }
@@ -97,23 +100,27 @@ public class Level extends JFrame implements KeyListener
     public void keyReleased( KeyEvent e )
     {
         int key = e.getKeyCode();
-        User myUser = (User)user;
         switch(key)
         {
             case KeyEvent.VK_UP:
-                myUser.setDy(0);
+                user.setMoving( false );
+                user.setDy(0);
                 break;
             case KeyEvent.VK_DOWN:
-                myUser.setDy(0);
+                user.setMoving( false );
+                user.setDy(0);
                 break;
             case KeyEvent.VK_RIGHT:
-                myUser.setDx(0);
+                user.setMoving( false );
+                user.setDx(0);
                 break;
             case KeyEvent.VK_LEFT:
-                myUser.setDx(0);
+                user.setMoving( false );
+                user.setDx(0);
                 break;
-            case KeyEvent.VK_Z:
-                myUser.setIsAttacking( false );
+            case KeyEvent.VK_Q:
+                user.setAttacking( false) ;
+                break;
             default:
                 break;
         }

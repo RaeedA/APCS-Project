@@ -9,8 +9,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import entities.Entity;
-import entities.User;
-import entities.Character;
 
 @SuppressWarnings("serial")
 public class Room extends JPanel
@@ -67,8 +65,37 @@ public class Room extends JPanel
         current.getLabel().setIcon(entity.getCurrent());
         entity.setCurrent( newTile.getImage() );
         newTile.getLabel().setIcon( Images.combine(newTile.getImage(),entity.getImg() ));
-        entity.setLocation( p );
-        
+        entity.setLocation( p );    
+    }
+    
+
+    public Entity getAdjacent(Point p)
+    {
+        if (layout[p.x+1][p.y].getType().contains( "entity" ) )
+        {
+            return entityAt(new Point(p.x+1, p.y));
+        }
+        if (layout[p.x-1][p.y].getType().contains( "entity" ) )
+        {
+            return entityAt(new Point(p.x-1, p.y));
+        }
+        if (layout[p.x][p.y+1].getType().contains( "entity" ) )
+        {
+            return entityAt(new Point(p.x, p.y+1));
+        }
+        if (layout[p.x][p.y+1].getType().contains( "entity" ) )
+        {
+            return entityAt(new Point(p.x, p.y-1));
+        }
+        return null;
+    }
+    
+    public void kill(Entity e)
+    {
+        entities.remove( e );
+        layout[e.getLocation().x][e.getLocation().y].setPassable( true );
+        layout[e.getLocation().x][e.getLocation().y].setType( "floor" );
+        layout[e.getLocation().x][e.getLocation().y].getLabel().setIcon( e.getCurrent() );
     }
     
     public void redraw( Entity entity, ImageIcon img )
@@ -90,7 +117,7 @@ public class Room extends JPanel
         return null;
     }
     
-    public Entity getEntityAtPoint( Point location )
+    public Entity entityAt( Point location )
     {
         for( Entity entity : entities)
         {

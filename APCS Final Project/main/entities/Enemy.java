@@ -1,6 +1,7 @@
 package entities;
 
 import java.awt.Point;
+
 import gui.Images;
 import gui.Room;
 
@@ -11,13 +12,13 @@ public class Enemy extends Character
     public Enemy(Room room, Point p)
     {
         super(room, p);
-        iconNum = (int)(Math.random() * 4) -1;
-        image = Images.getSkeleton()[0];
         type = "enemy";
-        room.addEntity(this);
-        //TODO: base randDEcision on difficuly
+        health = 100;
         difficulty = 50;
+        images = Images.getSkeleton();
+        image = images[0];
         randDecision = (int) (Math.random() * 100);
+        room.addEntity(this);
     }
 
     @Override
@@ -25,29 +26,24 @@ public class Enemy extends Character
     {
         while (isAlive)
         {
+            charSleep( 200 );
             if(health < 0)
             {
-                isAlive = false;
                 System.out.print( "enemy is dead" );
-            }
-            else if(randDecision < 0)
-            {
-                randDecision = (int) (Math.random() * 100);
+                isAlive = false;
             }
             else if(randDecision < difficulty)
             {
-                charSleep( 200 );
                 update();
                 randDecision = randDecision - (int) (Math.random() * 2 + 1);
             }
             else
             {
-                charSleep( 200 );
                 idle();
-                randDecision--;
             }
+            randDecision = (int) (Math.random() * 100);
         }
-        
+        die();
     }
     
     public void update()
@@ -80,16 +76,6 @@ public class Enemy extends Character
             }
         }
         
-    }
-    
-    public void idle()
-    {
-        iconNum++;
-        if( iconNum == 4)
-        {
-            iconNum = 0;
-        }
-        room.redraw( this, Images.getSkeleton()[ iconNum ]);
     }
     
 
