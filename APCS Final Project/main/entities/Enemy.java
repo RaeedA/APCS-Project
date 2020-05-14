@@ -58,7 +58,7 @@ public class Enemy extends Character
     
     public void update()
     {
-        if(randDecision < difficulty)
+        if (randDecision < difficulty)
         {
             moveToPlayer();
         }
