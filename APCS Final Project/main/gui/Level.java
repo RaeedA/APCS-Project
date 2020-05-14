@@ -90,6 +90,10 @@ public class Level extends JFrame implements KeyListener
             case KeyEvent.VK_Q:
                 user.setAttacking( true );
                 break;
+            case KeyEvent.VK_O:
+                Enemy ene = new Enemy(rooms.get( 0 ), new Point(1,1));
+                ene.start();
+                break;
             default:
                 break;
         }
