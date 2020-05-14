@@ -41,6 +41,12 @@ public class Level extends JFrame implements KeyListener
         Room room1 = new Room(15);
         pane.add(room1,c);
         rooms.add( room1 );
+        for(int i = 0; i < Math.random() * 10 + 1; i++)
+        {
+            (new Enemy(room1, new Point((int) (Math.random() * 13) + 1, (int) (Math.random() * 13) + 1))).start();
+        }
+        user = new User(room1, new Point(8, 12));
+        user.start();
         
         /*c.gridx = 1;
         c.gridy = 0;
@@ -53,11 +59,6 @@ public class Level extends JFrame implements KeyListener
         setMinimumSize(getSize());
         setSize(getSize().width+30, getSize().height+30);
         setVisible( true );
-
-        Enemy e1 = new Enemy(room1, new Point(1,5));
-        e1.start();
-        user = new User(room1, new Point(8, 12));
-        user.start();
     }
 
     @Override
@@ -87,7 +88,7 @@ public class Level extends JFrame implements KeyListener
                 user.setMoving( true );
                 user.setDx(-1);
                 break;
-            case KeyEvent.VK_Q:
+            case KeyEvent.VK_Z:
                 user.setAttacking( true );
                 break;
             case KeyEvent.VK_O:
@@ -122,7 +123,7 @@ public class Level extends JFrame implements KeyListener
                 user.setMoving( false );
                 user.setDx(0);
                 break;
-            case KeyEvent.VK_Q:
+            case KeyEvent.VK_Z:
                 user.setAttacking( false) ;
                 break;
             default:
