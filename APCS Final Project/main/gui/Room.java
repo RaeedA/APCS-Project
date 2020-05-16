@@ -83,7 +83,7 @@ public class Room extends JPanel
         {
             return entityAt(new Point(p.x, p.y+1));
         }
-        if (layout[p.x][p.y+1].getType().contains( "entity" ) )
+        if (layout[p.x][p.y-1].getType().contains( "entity" ) )
         {
             return entityAt(new Point(p.x, p.y-1));
         }
@@ -128,6 +128,11 @@ public class Room extends JPanel
             }
         }
         return null;
+    }
+    
+    public int getLength()
+    {
+        return layout.length;
     }
     
     public Point findEmpty(Point p)

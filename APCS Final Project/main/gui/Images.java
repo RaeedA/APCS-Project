@@ -52,6 +52,9 @@ public class Images
     private static ImageIcon skeleton2 = resize(loadImg("main/images/skeleton_2.png"), 32, 32);
     private static ImageIcon skeleton3 = resize(loadImg("main/images/skeleton_3.png"), 32, 32);
     private static ImageIcon skeleton4 = resize(loadImg("main/images/skeleton_4.png"), 32, 32);
+    private static BufferedImage healthbars = loadImg("main/images/Healthbars.png");
+    private static BufferedImage full = crop(healthbars, 33, 37, 80, 9);
+    private static BufferedImage empty = crop(healthbars, 33, 51, 80, 9);
     
     public Images()
     { 
@@ -96,6 +99,13 @@ public class Images
     public static ImageIcon[] getSkeleton()
     {
         return new ImageIcon[] {skeleton1, skeleton2, skeleton3, skeleton4};
+    }
+    public static ImageIcon[] getHealthBars(int size)
+    {
+        int multiplier = ((size*32)/80)/2;
+        ImageIcon fuLL = resize(full, 80*multiplier, 9*multiplier);
+        ImageIcon emPTY = resize(empty, 80*multiplier, 9*multiplier);
+        return new ImageIcon[] {fuLL, emPTY};
     }
     
     public static ImageIcon combine(ImageIcon bottom, ImageIcon top)

@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import entities.Enemy;
 import entities.Entity;
@@ -35,9 +36,9 @@ public class Level extends JFrame implements KeyListener
         pane.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
-        c.gridx = 0;
-        c.gridy = 0;
         
+        c.gridx = 0;
+        c.gridy = 1;
         Room room1 = new Room(15);
         pane.add(room1,c);
         rooms.add( room1 );
@@ -47,6 +48,11 @@ public class Level extends JFrame implements KeyListener
         }
         user = new User(room1, new Point(8, 12));
         user.start();
+        
+        c.gridx = 0;
+        c.gridy = 0;
+        Healthbar bar = new Healthbar(room1.getLength());
+        pane.add( new JLabel(bar.getFull()), c );
         
         /*c.gridx = 1;
         c.gridy = 0;
@@ -88,7 +94,7 @@ public class Level extends JFrame implements KeyListener
                 user.setMoving( true );
                 user.setDx(-1);
                 break;
-            case KeyEvent.VK_Z:
+            case KeyEvent.VK_Q:
                 user.setAttacking( true );
                 break;
             case KeyEvent.VK_O:
@@ -123,7 +129,7 @@ public class Level extends JFrame implements KeyListener
                 user.setMoving( false );
                 user.setDx(0);
                 break;
-            case KeyEvent.VK_Z:
+            case KeyEvent.VK_Q:
                 user.setAttacking( false) ;
                 break;
             default:
