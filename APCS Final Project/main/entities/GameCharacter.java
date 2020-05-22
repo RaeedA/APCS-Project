@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 
 import gui.Room;
 
-public abstract class Character extends Entity
+public abstract class GameCharacter extends Entity
 {
     protected int health;
     protected int attackDamage;
@@ -14,8 +14,10 @@ public abstract class Character extends Entity
     protected int iconNum;
     protected Point front;
     protected ImageIcon[] images;
+    protected enum Directions{up, down, left, right};
+    protected Directions direction;
     
-    public Character(Room room, Point p)
+    public GameCharacter(Room room, Point p)
     {
         super(room, p);
         iconNum = (int)(Math.random() * 4) -1;
@@ -49,7 +51,7 @@ public abstract class Character extends Entity
         }
     }
 
-    protected boolean attack(Character c)
+    protected boolean attack(GameCharacter c)
     {
         if( c.getLocation().distance( location ) > 1.5 )
         {
@@ -73,6 +75,27 @@ public abstract class Character extends Entity
         }
         room.redraw( this, images[ iconNum ]);
     }
+    
+    public void faceUp()
+    {
+        direction = Directions.up;
+    }
+    
+    public void faceDown()
+    {
+        direction = Directions.down;
+    }
+    
+    public void faceRight()
+    {
+        direction = Directions.right;
+    }
+    
+    public void faceLeft()
+    {
+        direction = Directions.left;
+    }
+    
     
     @Override
     public void run()
