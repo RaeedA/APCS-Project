@@ -51,8 +51,8 @@ public class Level extends JFrame implements KeyListener
         
         c.gridx = 0;
         c.gridy = 0;
-        Healthbar bar = new Healthbar(room1.getLength());
-        pane.add( new JLabel(bar.getFull()), c );
+        Top top = new Top(room1.getLength());
+        pane.add( top,c );
         
         /*c.gridx = 1;
         c.gridy = 0;
@@ -64,7 +64,7 @@ public class Level extends JFrame implements KeyListener
         pack();
         setMinimumSize(getSize());
         setSize(getSize().width+30, getSize().height+30);
-        //setVisible( true );
+        setVisible( true );
     }
 
     @Override

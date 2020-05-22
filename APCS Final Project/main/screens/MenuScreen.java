@@ -28,7 +28,7 @@ public class MenuScreen extends Screen
         this.getContentPane().add( ( new JLabel( background ) ) );
         
         
-        button.addActionListener( ( new ActionListener()
+        button.addActionListener((new ActionListener()
         {
 
             @Override
@@ -36,7 +36,8 @@ public class MenuScreen extends Screen
             {
                 
             }
-        } ) );
+            
+        }));
         this.pack();
     }
     

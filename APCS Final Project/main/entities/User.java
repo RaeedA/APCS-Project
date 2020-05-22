@@ -22,7 +22,7 @@ public class User extends Character
         images = Images.getWarrior();
         image = images[0];
         attackDamage = 1000;
-        health = 100;
+        health = 1000;
         room.addEntity( this );
     }
     
