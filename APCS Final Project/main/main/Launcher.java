@@ -1,13 +1,18 @@
 package main;
 
-import javax.swing.SwingUtilities;
 import gui.*;
 
 public class Launcher
 {
+    private static Game game;
     public static void main(String[] args)
     {
-        //Game game = new Game();
-        Level level = new Level("lvl");
+        game = new Game();
+        game.start();
+    }
+    
+    public static Game getGame()
+    {
+        return game;
     }
 }

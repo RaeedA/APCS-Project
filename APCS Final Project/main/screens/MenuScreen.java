@@ -1,7 +1,6 @@
 package screens;
 
-import gui.Images;
-import main.Game;
+import main.Launcher;
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -14,12 +13,12 @@ import javax.swing.JLabel;
 
 public class MenuScreen extends Screen
 {
-    //private boolean gameToStart = false;
+    private boolean gameToStart = false;
     public MenuScreen()
     {
       //TODO: change later
         JButton button = new JButton( "Start Game" );
-        button.setBounds( 100, 100, 75, 100 );
+        button.setBounds( 100, 400, 100, 100 );
         this.add( button );
         ImageIcon background = new ImageIcon(
             this.getClass().getResource( "MenuBackgroundAPCS.gif" ) );
@@ -34,7 +33,8 @@ public class MenuScreen extends Screen
             @Override
             public void actionPerformed( ActionEvent e )
             {
-                
+                setVisible(false);
+                Launcher.getGame().getLevel().setVisible( true );
             }
             
         }));
@@ -43,7 +43,7 @@ public class MenuScreen extends Screen
     
     public boolean startGame()
     {
-        
+        return gameToStart;
     }
 
 }

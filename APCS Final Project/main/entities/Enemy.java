@@ -5,7 +5,7 @@ import java.awt.Point;
 import gui.Images;
 import gui.Room;
 
-public class Enemy extends Character
+public class Enemy extends GameCharacter
 {
     private int randDecision;
     private int difficulty;

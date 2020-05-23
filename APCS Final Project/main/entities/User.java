@@ -5,7 +5,7 @@ import java.awt.Point;
 import gui.Images;
 import gui.Room;
 
-public class User extends Character
+public class User extends GameCharacter
 {
     private int score;
     private int dx = 0;
@@ -33,13 +33,30 @@ public class User extends Character
         front = new Point(getLocation().x + dx, getLocation().y + dy);
         if (attacking)
         {
-            Entity surrounding = room.getAdjacent( location );
-            if(surrounding instanceof Enemy)
+            Entity frontEnemy;
+            switch(direction)
             {
-                if (attack((Character)surrounding))
+                case up:
+                    frontEnemy = room.getUpEntity( location );
+                    break;
+                case down:
+                    frontEnemy = room.getDownEntity( location );
+                    break;
+                case right:
+                    frontEnemy = room.getRightEntity( location );
+                    break;
+                case left:
+                    frontEnemy = room.getLeftEntity( location );
+                    break;
+                default:
+                    frontEnemy = null;
+            }
+            if(frontEnemy instanceof Enemy)
+            {
+                if (attack((GameCharacter)frontEnemy))
                 {
-                    addToScore(( (Enemy)surrounding ).getScore());
                     System.out.println(score);
+                    addToScore(( (Enemy)frontEnemy ).getScore());
                 }
             }
         }

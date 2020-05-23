@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 
 import gui.Room;
 
-public abstract class Character extends Entity
+public abstract class GameCharacter extends Entity
 {
     protected int health;
     protected int attackDamage;
@@ -15,8 +15,10 @@ public abstract class Character extends Entity
     protected Point front;
     protected ImageIcon[] images;
     protected ImageIcon[] attackImages;
+    protected enum Directions{up, down, left, right};
+    protected Directions direction;
     
-    public Character(Room room, Point p)
+    public GameCharacter(Room room, Point p)
     {
         super(room, p);
         iconNum = (int)(Math.random() * 4) -1;
@@ -28,7 +30,7 @@ public abstract class Character extends Entity
         return health;
     }
     
-    protected void setHealth(int health)
+    public void setHealth(int health)
     {
         this.health = health;
     }
@@ -36,7 +38,6 @@ public abstract class Character extends Entity
     protected void move(Point p)
     {
         room.move(this, p);
-        idle();
     }
     
     protected void charSleep( int duration )
@@ -51,9 +52,9 @@ public abstract class Character extends Entity
         }
     }
 
-    protected boolean attack(Character c)
+    protected boolean attack(GameCharacter frontEnemy)
     {
-        Point other = c.getLocation();
+        Point other = frontEnemy.getLocation();
         if( other.distance( location ) > 1.5 )
         {
             return false;
@@ -65,19 +66,19 @@ public abstract class Character extends Entity
         }
         int offx = 0;
         int offy = 0;
-        if (other.x == location.x+1)
+        if (direction == Directions.right)
         {
             offx = 1;
         }
-        else if (other.x == location.x-1)
+        else if (direction == Directions.left)
         {
             offx = -1;
         }
-        else if (other.y == location.y+1)
+        else if (direction == Directions.up)
         {
             offy = 1;
         }
-        else if (other.y == location.y-1)
+        else if (direction == Directions.down)
         {
             offy = -1;
         }
@@ -86,8 +87,8 @@ public abstract class Character extends Entity
             return false;
         }
         room.redraw( this, attackImages[iconNum] , offx, offy);
-        c.setHealth( c.getHealth()-attackDamage );
-        return c.health < 0;
+        frontEnemy.setHealth( frontEnemy.getHealth()-attackDamage );
+        return frontEnemy.health < 0;
     }
 
     protected void die()
@@ -105,6 +106,27 @@ public abstract class Character extends Entity
         room.redraw( this, images[ iconNum ]);
     }
     
+    public void faceUp()
+    {
+        direction = Directions.up;
+    }
+    
+    public void faceDown()
+    {
+        direction = Directions.down;
+    }
+    
+    public void faceRight()
+    {
+        direction = Directions.right;
+    }
+    
+    public void faceLeft()
+    {
+        direction = Directions.left;
+    }
+    
+    
     @Override
     public void run()
     {
@@ -114,7 +136,7 @@ public abstract class Character extends Entity
             if(health < 0)
             {
                 isAlive = false;
-                System.out.println(getType() + " is dead");
+                System.out.println(getType() + " is dead ");
             }
             update(); 
         }
