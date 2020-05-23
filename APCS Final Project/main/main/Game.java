@@ -10,21 +10,25 @@ public class Game extends Thread
 {
     Level lvl;
     MenuScreen menu;
+    boolean started = false;
     public Game()
     {
-        SwingUtilities.invokeLater( new Runnable() {
-
-            @Override
-            public void run()
-            {
-                lvl = new Level("gui");
-                menu = new MenuScreen();
-                menu.setVisible( true );
-                
-                //TODO: This will set visibility, etc. Will make changes to Game, Screen, MenuScreen classes
-            }
-            
-        });
+//        SwingUtilities.invokeLater( new Runnable() {
+//
+//            @Override
+//            public void run()
+//            {
+//                
+//                
+//                //TODO: This will set visibility, etc. Will make changes to Game, Screen, MenuScreen classes
+//            }
+//            
+//        });
+        lvl = new Level("gui");
+        menu = new MenuScreen();
+        menu.setVisible( true );
+        //menu.setVisible( false );
+        //lvl.setVisible( true );
         
         
     }
@@ -33,12 +37,9 @@ public class Game extends Thread
     {
         while(true)
         {
-            if(menu.startGame())
-            {
-                menu.setVisible( false );
-                lvl.setVisible( true );
-            }
+            
         }
+        
     }
     
     public Level getLevel()

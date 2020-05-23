@@ -66,6 +66,11 @@ public class Level extends JFrame implements KeyListener
         setSize(getSize().width+30, getSize().height+30);
         //setVisible( true );
     }
+    
+    public Room getRootm(int index)
+    {
+        return rooms.get( index );
+    }
 
     @Override
     public void keyTyped( KeyEvent e )
@@ -105,6 +110,8 @@ public class Level extends JFrame implements KeyListener
                 Enemy ene = new Enemy(rooms.get( 0 ), new Point(1,1));
                 ene.start();
                 break;
+            case KeyEvent.VK_X:
+                user.setHealth( 0 );
             default:
                 break;
         }

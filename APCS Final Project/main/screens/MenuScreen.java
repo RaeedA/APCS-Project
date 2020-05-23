@@ -1,7 +1,6 @@
 package screens;
 
-import gui.Images;
-import main.Game;
+import main.Launcher;
 
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -34,7 +33,8 @@ public class MenuScreen extends Screen
             @Override
             public void actionPerformed( ActionEvent e )
             {
-                gameToStart = true;
+                setVisible(false);
+                Launcher.getGame().getLevel().setVisible( true );
             }
         } ) );
         this.pack();

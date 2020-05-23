@@ -5,9 +5,15 @@ import gui.*;
 
 public class Launcher
 {
+    private static Game game;
     public static void main(String[] args)
     {
-        Game game = new Game();
+        game = new Game();
         game.start();
+    }
+    
+    public static Game getGame()
+    {
+        return game;
     }
 }

@@ -29,7 +29,7 @@ public abstract class GameCharacter extends Entity
         return health;
     }
     
-    protected void setHealth(int health)
+    public void setHealth(int health)
     {
         this.health = health;
     }
@@ -106,7 +106,7 @@ public abstract class GameCharacter extends Entity
             if(health < 0)
             {
                 isAlive = false;
-                System.out.println(getType() + " is dead");
+                System.out.println(getType() + " is dead ");
             }
             update(); 
         }
