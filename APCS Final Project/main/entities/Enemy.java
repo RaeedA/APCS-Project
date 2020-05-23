@@ -36,6 +36,7 @@ public class Enemy extends GameCharacter
         }
         randDecision = (int) (Math.random() * 100);
     }
+    
     public int getScore()
     {
         return score;

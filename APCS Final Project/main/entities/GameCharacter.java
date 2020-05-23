@@ -38,6 +38,7 @@ public abstract class GameCharacter extends Entity
     protected void move(Point p)
     {
         room.move(this, p);
+        idle();
     }
     
     protected void charSleep( int duration )
