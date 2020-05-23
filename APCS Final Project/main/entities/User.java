@@ -7,7 +7,6 @@ import gui.Room;
 
 public class User extends GameCharacter
 {
-    private int score;
     private int dx = 0;
     private int dy = 0;
     private boolean attacking;
@@ -31,36 +30,11 @@ public class User extends GameCharacter
     public void update()
     {
         front = new Point(getLocation().x + dx, getLocation().y + dy);
-        if (attacking)
+        if (attacking )
         {
-            Entity frontEnemy;
-            switch(facing)
-            {
-                case up:
-                    frontEnemy = room.getUpEntity( location );
-                    break;
-                case down:
-                    frontEnemy = room.getDownEntity( location );
-                    break;
-                case right:
-                    frontEnemy = room.getRightEntity( location );
-                    break;
-                case left:
-                    frontEnemy = room.getLeftEntity( location );
-                    break;
-                default:
-                    frontEnemy = null;
-            }
-            if(frontEnemy instanceof Enemy)
-            {
-                if (attack((GameCharacter)frontEnemy))
-                {
-                    System.out.println(score);
-                    addToScore(( (Enemy)frontEnemy ).getScore());
-                }
-            }
+            attack();
         }
-        if(moving)
+        if( moving )
         {
             move( front );
         }
@@ -110,5 +84,17 @@ public class User extends GameCharacter
     public boolean isMoving()
     {
         return moving;
+    }
+
+    @Override
+    protected void successKill(GameCharacter other)
+    {
+        addToScore(other.score);
+    }
+
+    @Override
+    protected boolean isAgainst( Entity other )
+    {
+        return other instanceof Enemy;
     }
 }

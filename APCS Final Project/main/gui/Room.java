@@ -124,7 +124,7 @@ public class Room extends JPanel
     {
         int locX = entity.getLocation().x;
         int locY = entity.getLocation().y;
-        //layout[locX][locY].getLabel().setIcon(layout[locX][locY].getImage());
+        System.out.print( "te" );
         layout[locX][locY].getLabel().setIcon( Images.combine( layout[locX][locY].getImage(), img, offx, offy ));
     }
     

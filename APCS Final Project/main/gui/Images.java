@@ -134,6 +134,7 @@ public class Images
         g.drawImage(bottom.getImage(), 0, 0, null);
         g.drawImage(top.getImage(), offx, offy, null);
         g.dispose();
+        System.out.println("st");
         return new ImageIcon(finalImage);
     }
 

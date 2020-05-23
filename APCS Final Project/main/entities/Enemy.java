@@ -16,6 +16,7 @@ public class Enemy extends GameCharacter
         type = "enemy";
         health = 100;
         difficulty = 30;
+        attackDamage = 0;
         
         images = Images.getSkeleton();
         image = images[0];
@@ -74,5 +75,17 @@ public class Enemy extends GameCharacter
                 faceUp();
             }
         }
+    }
+
+    @Override
+    protected void successKill(GameCharacter other)
+    {
+        return;
+    }
+
+    @Override
+    protected boolean isAgainst( Entity other )
+    {
+        return other instanceof User;
     }
 }
