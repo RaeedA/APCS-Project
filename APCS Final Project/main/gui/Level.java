@@ -112,6 +112,7 @@ public class Level extends JFrame implements KeyListener
                 break;
             case KeyEvent.VK_X:
                 user.setHealth( 0 );
+                break;
             default:
                 break;
         }
