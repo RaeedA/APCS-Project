@@ -103,7 +103,7 @@ public class Level extends JFrame implements KeyListener
                 user.setDx(-1);
                 user.faceLeft();
                 break;
-            case KeyEvent.VK_Z:
+            case KeyEvent.VK_Q:
                 user.setAttacking( true );
                 break;
             case KeyEvent.VK_O:
