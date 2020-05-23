@@ -89,4 +89,9 @@ public class Enemy extends GameCharacter
         return other instanceof User;
     }
     
+    public void setDifficulty(int difficulty)
+    {
+        this.difficulty = difficulty;
+    }
+    
 }
