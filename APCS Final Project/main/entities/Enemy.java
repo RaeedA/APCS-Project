@@ -53,12 +53,12 @@ public class Enemy extends GameCharacter
             if(myX - userX > 0)
             {
                 move( new Point( myX - 1, myY) );
-                facing = Directions.left;
+                faceLeft();
             }
             else
             {
                 move( new Point( myX + 1, myY) );
-                facing = Directions.right;
+                faceRight();
             }
         }
         else
@@ -66,12 +66,12 @@ public class Enemy extends GameCharacter
             if(myY - userY > 0)
             {
                 move( new Point( myX, myY - 1) );
-                facing = Directions.down;
+                faceDown();
             }
             else
             {
                 move( new Point(myX, myY + 1 ));
-                facing = Directions.up;
+                faceUp();
             }
         }
     }
