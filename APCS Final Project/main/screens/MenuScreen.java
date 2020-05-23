@@ -16,7 +16,7 @@ public class MenuScreen extends Screen
     private boolean gameToStart = false;
     public MenuScreen()
     {
-      //TODO: change later
+        super();
         JButton button = new JButton( "Start Game" );
         button.setBounds( 100, 400, 100, 100 );
         this.add( button );

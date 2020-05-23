@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import entities.Enemy;
 import entities.Entity;
@@ -17,8 +19,11 @@ import entities.User;
 
 public class Level extends JFrame implements KeyListener
 {    
-    ArrayList<Room> rooms;
+    private ArrayList<Room> rooms;
     private User user;
+    private Container pane;
+    private GridBagConstraints constraints;
+    
     
     public Level(String text)
     {
@@ -31,29 +36,11 @@ public class Level extends JFrame implements KeyListener
     public void setup()
     {
         setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-        
-        Container pane = getContentPane();
+        pane = getContentPane();
         pane.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.BOTH;
-        
-        c.gridx = 0;
-        c.gridy = 1;
-        Room room1 = new Room(15);
-        pane.add(room1,c);
-        rooms.add( room1 );
-        for(int i = 0; i < Math.random() * 10 + 1; i++)
-        {
-            (new Enemy(room1, new Point((int) (Math.random() * 13) + 1, (int) (Math.random() * 13) + 1))).start();
-        }
-        user = new User(room1, new Point(8, 12));
-        user.start();
-        
-        c.gridx = 0;
-        c.gridy = 0;
-        Top top = new Top(room1.getLength());
-        pane.add( top,c );
-        
+        constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.BOTH;
+        generateRoom(new Room(15), 1); 
         /*c.gridx = 1;
         c.gridy = 0;
         
@@ -64,10 +51,37 @@ public class Level extends JFrame implements KeyListener
         pack();
         setMinimumSize(getSize());
         setSize(getSize().width+30, getSize().height+30);
-        //setVisible( true );
     }
     
-    public Room getRootm(int index)
+    public void generateRoom(Room room, int roomNum)
+    {
+        if(roomNum > 1)
+        {
+            pane.remove( rooms.get( roomNum - 2 ) );
+            rooms.remove( roomNum - 2 );
+        }
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        pane.add(room, constraints);
+        rooms.add( room );
+        for(int i = 0; i < Math.random() * 10 + 1; i++)
+        {
+            (new Enemy(room, new Point((int) (Math.random() * 13) + 1, (int) (Math.random() * 13) + 1))).start();
+        }
+        user = new User(room, new Point(8, 12));
+        user.start();
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        Top top = new Top(room.getLength());
+        pane.add( top, constraints );
+        
+    }
+    
+    
+    
+    
+    
+    public Room getRoom(int index)
     {
         return rooms.get( index );
     }
@@ -111,7 +125,7 @@ public class Level extends JFrame implements KeyListener
                 ene.start();
                 break;
             case KeyEvent.VK_X:
-                user.setHealth( 0 );
+                generateRoom(new Room(15), 2);
                 break;
             default:
                 break;

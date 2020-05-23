@@ -6,6 +6,6 @@ public abstract class Screen extends JFrame
 {
     public Screen()
     {
-        //TODO: Need Object-Oriented Implementation
+        setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     }
 }
