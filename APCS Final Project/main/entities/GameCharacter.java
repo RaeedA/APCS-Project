@@ -12,10 +12,12 @@ public abstract class GameCharacter extends Entity
     protected int attackDamage;
     protected boolean isAlive;
     protected int iconNum;
+    protected int score;
     protected Point front;
     protected ImageIcon[] images;
+    protected ImageIcon[] attackImages;
     protected enum Directions{up, down, left, right};
-    protected Directions direction;
+    protected Directions facing;
     
     public GameCharacter(Room room, Point p)
     {
@@ -37,6 +39,7 @@ public abstract class GameCharacter extends Entity
     protected void move(Point p)
     {
         room.move(this, p);
+        idle();
     }
     
     protected void charSleep( int duration )
@@ -51,15 +54,51 @@ public abstract class GameCharacter extends Entity
         }
     }
 
-    protected boolean attack(GameCharacter c)
+    protected void attack()
     {
-        if( c.getLocation().distance( location ) > 1.5 )
+        Entity frontEnemy;
+        int offx = 0;
+        int offy = 0;
+        switch(facing)
         {
-            return false;
+            case up:
+                frontEnemy = room.getUpEntity( location );
+                offy = 10;
+                break;
+            case down:
+                frontEnemy = room.getDownEntity( location );
+                offy = -10;
+                break;
+            case right:
+                frontEnemy = room.getRightEntity( location );
+                offx = 10;
+                break;
+            case left:
+                frontEnemy = room.getLeftEntity( location );
+                offx = -10;
+                break;
+            default:
+                frontEnemy = null;
         }
-        c.setHealth( c.getHealth()-attackDamage );
-        return c.health < 0;
+        if(isAgainst(frontEnemy))
+        {
+            GameCharacter enemy = (GameCharacter) frontEnemy;
+            iconNum++;
+            if( iconNum == 4)
+            {
+                iconNum = 0;
+            }
+            room.redraw( this, images[iconNum], offx, offy);
+            enemy.setHealth( enemy.getHealth()-attackDamage );
+            if (enemy.health < 0)
+            {
+                successKill(enemy);
+            }
+        }
     }
+    
+    protected abstract boolean isAgainst(Entity other);
+    protected abstract void successKill(GameCharacter other);
 
     protected void die()
     {
@@ -78,22 +117,22 @@ public abstract class GameCharacter extends Entity
     
     public void faceUp()
     {
-        direction = Directions.up;
+        facing = Directions.up;
     }
     
     public void faceDown()
     {
-        direction = Directions.down;
+        facing = Directions.down;
     }
     
     public void faceRight()
     {
-        direction = Directions.right;
+        facing = Directions.right;
     }
     
     public void faceLeft()
     {
-        direction = Directions.left;
+        facing = Directions.left;
     }
     
     
@@ -113,5 +152,5 @@ public abstract class GameCharacter extends Entity
         die();
     }
     
-    public abstract void update();
+    protected abstract void update();
 }

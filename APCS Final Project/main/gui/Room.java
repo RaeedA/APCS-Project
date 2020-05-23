@@ -120,6 +120,14 @@ public class Room extends JPanel
         layout[locX][locY].getLabel().setIcon( Images.combine( layout[locX][locY].getImage(), img ));
     }
     
+    public void redraw( Entity entity, ImageIcon img , int offx, int offy)
+    {
+        int locX = entity.getLocation().x;
+        int locY = entity.getLocation().y;
+        System.out.print( "te" );
+        layout[locX][locY].getLabel().setIcon( Images.combine( layout[locX][locY].getImage(), img, offx, offy ));
+    }
+    
     public Entity getUser( )
     {
         for( Entity entity : entities)

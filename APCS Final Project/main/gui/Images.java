@@ -44,14 +44,22 @@ public class Images
     private static ImageIcon torch2 = resize(loadImg("main/images/torch_2.png"), 32, 32);
     private static ImageIcon torch3 = resize(loadImg("main/images/torch_3.png"), 32, 32);
     private static ImageIcon torch4 = resize(loadImg("main/images/torch_4.png"), 32, 32);
-    private static ImageIcon warrior1 = resize(loadImg("main/images/warrior_1.png"), 32, 32);
-    private static ImageIcon warrior2 = resize(loadImg("main/images/warrior_2.png"), 32, 32);
-    private static ImageIcon warrior3 = resize(loadImg("main/images/warrior_3.png"), 32, 32);
-    private static ImageIcon warrior4 = resize(loadImg("main/images/warrior_4.png"), 32, 32);
-    private static ImageIcon skeleton1 = resize(loadImg("main/images/skeleton_1.png"), 32, 32);
-    private static ImageIcon skeleton2 = resize(loadImg("main/images/skeleton_2.png"), 32, 32);
-    private static ImageIcon skeleton3 = resize(loadImg("main/images/skeleton_3.png"), 32, 32);
-    private static ImageIcon skeleton4 = resize(loadImg("main/images/skeleton_4.png"), 32, 32);
+    private static ImageIcon warrior1 = resize(loadImg("main/images/warriors/warrior_1.png"), 32, 32);
+    private static ImageIcon warrior2 = resize(loadImg("main/images/warriors/warrior_2.png"), 32, 32);
+    private static ImageIcon warrior3 = resize(loadImg("main/images/warriors/warrior_3.png"), 32, 32);
+    private static ImageIcon warrior4 = resize(loadImg("main/images/warriors/warrior_4.png"), 32, 32);
+    private static ImageIcon awarrior1 = resize(loadImg("main/images/warriors/awarrior_1.png"), 32, 32);
+    private static ImageIcon awarrior2 = resize(loadImg("main/images/warriors/awarrior_2.png"), 32, 32);
+    private static ImageIcon awarrior3 = resize(loadImg("main/images/warriors/awarrior_3.png"), 32, 32);
+    private static ImageIcon awarrior4 = resize(loadImg("main/images/warriors/awarrior_4.png"), 32, 32);
+    /*private static ImageIcon skeleton1 = resize(loadImg("main/images/skeletons/skeleton_1.png"), 32, 32);
+    private static ImageIcon skeleton2 = resize(loadImg("main/images/skeletons/skeleton_2.png"), 32, 32);
+    private static ImageIcon skeleton3 = resize(loadImg("main/images/skeletons/skeleton_3.png"), 32, 32);
+    private static ImageIcon skeleton4 = resize(loadImg("main/images/skeletons/skeleton_4.png"), 32, 32);*/
+    private static ImageIcon askeleton1 = resize(loadImg("main/images/skeletons/askeleton_1.png"), 32, 32);
+    private static ImageIcon askeleton2 = resize(loadImg("main/images/skeletons/askeleton_2.png"), 32, 32);
+    private static ImageIcon askeleton3 = resize(loadImg("main/images/skeletons/askeleton_3.png"), 32, 32);
+    private static ImageIcon askeleton4 = resize(loadImg("main/images/skeletons/askeleton_4.png"), 32, 32);
     private static BufferedImage healthbars = loadImg("main/images/Healthbars.png");
     private static BufferedImage full = crop(healthbars, 33, 37, 80, 9);
     private static BufferedImage empty = crop(healthbars, 33, 51, 80, 9);
@@ -96,9 +104,13 @@ public class Images
     {
         return new ImageIcon[] {warrior1, warrior2, warrior3, warrior4};
     }
+    public static ImageIcon[] getAttackWarrior()
+    {
+        return new ImageIcon[] {awarrior1, awarrior2, awarrior3, awarrior4};
+    }
     public static ImageIcon[] getSkeleton()
     {
-        return new ImageIcon[] {skeleton1, skeleton2, skeleton3, skeleton4};
+        return new ImageIcon[] {askeleton1, askeleton2, askeleton3, askeleton4};
     }
     public static ImageIcon[] getHealthBars(int mult)
     {
@@ -122,6 +134,7 @@ public class Images
         g.drawImage(bottom.getImage(), 0, 0, null);
         g.drawImage(top.getImage(), offx, offy, null);
         g.dispose();
+        System.out.println("st");
         return new ImageIcon(finalImage);
     }
 

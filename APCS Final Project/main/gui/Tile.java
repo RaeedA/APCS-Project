@@ -7,12 +7,14 @@ public class Tile
 {
     private boolean passable;
     private final JLabel myLabel;
+    private final ImageIcon image;
     private String myType;
     
     public Tile(boolean pass, JLabel label, String type)
     {
         passable = pass;
         myLabel = label;
+        image = (ImageIcon)label.getIcon();
         myType = type;
     }
     
@@ -38,11 +40,7 @@ public class Tile
     }
     public ImageIcon getImage()
     {
-        if (myLabel.getIcon() == null)
-        {
-            return new ImageIcon();
-        }
-        return (ImageIcon)myLabel.getIcon();
+        return image;
     }
     public String toString()
     {

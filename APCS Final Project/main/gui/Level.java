@@ -141,7 +141,7 @@ public class Level extends JFrame implements KeyListener
                 user.setMoving( false );
                 user.setDx(0);
                 break;
-            case KeyEvent.VK_Z:
+            case KeyEvent.VK_Q:
                 user.setAttacking( false) ;
                 break;
             default:
