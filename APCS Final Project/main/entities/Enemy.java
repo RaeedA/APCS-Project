@@ -88,4 +88,5 @@ public class Enemy extends GameCharacter
     {
         return other instanceof User;
     }
+    
 }

@@ -64,7 +64,7 @@ public class Level extends JFrame implements KeyListener
         pack();
         setMinimumSize(getSize());
         setSize(getSize().width+30, getSize().height+30);
-        setVisible( true );
+        //setVisible( true );
     }
     
     public Room getRootm(int index)
