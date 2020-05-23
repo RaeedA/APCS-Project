@@ -14,6 +14,7 @@ public abstract class Character extends Entity
     protected int iconNum;
     protected Point front;
     protected ImageIcon[] images;
+    protected ImageIcon[] attackImages;
     
     public Character(Room room, Point p)
     {
@@ -35,6 +36,7 @@ public abstract class Character extends Entity
     protected void move(Point p)
     {
         room.move(this, p);
+        idle();
     }
     
     protected void charSleep( int duration )
@@ -51,10 +53,39 @@ public abstract class Character extends Entity
 
     protected boolean attack(Character c)
     {
-        if( c.getLocation().distance( location ) > 1.5 )
+        Point other = c.getLocation();
+        if( other.distance( location ) > 1.5 )
         {
             return false;
         }
+        iconNum++;
+        if( iconNum == 4)
+        {
+            iconNum = 0;
+        }
+        int offx = 0;
+        int offy = 0;
+        if (other.x == location.x+1)
+        {
+            offx = 1;
+        }
+        else if (other.x == location.x-1)
+        {
+            offx = -1;
+        }
+        else if (other.y == location.y+1)
+        {
+            offy = 1;
+        }
+        else if (other.y == location.y-1)
+        {
+            offy = -1;
+        }
+        else
+        {
+            return false;
+        }
+        room.redraw( this, attackImages[iconNum] , offx, offy);
         c.setHealth( c.getHealth()-attackDamage );
         return c.health < 0;
     }

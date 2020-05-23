@@ -75,15 +75,15 @@ public class Room extends JPanel
         {
             return entityAt(new Point(p.x+1, p.y));
         }
-        if (layout[p.x-1][p.y].getType().contains( "entity" ) )
+        else if (layout[p.x-1][p.y].getType().contains( "entity" ) )
         {
             return entityAt(new Point(p.x-1, p.y));
         }
-        if (layout[p.x][p.y+1].getType().contains( "entity" ) )
+        else if (layout[p.x][p.y+1].getType().contains( "entity" ) )
         {
             return entityAt(new Point(p.x, p.y+1));
         }
-        if (layout[p.x][p.y-1].getType().contains( "entity" ) )
+        else if (layout[p.x][p.y-1].getType().contains( "entity" ) )
         {
             return entityAt(new Point(p.x, p.y-1));
         }
@@ -104,6 +104,14 @@ public class Room extends JPanel
         int locX = entity.getLocation().x;
         int locY = entity.getLocation().y;
         layout[locX][locY].getLabel().setIcon( Images.combine( layout[locX][locY].getImage(), img ));
+    }
+    
+    public void redraw( Entity entity, ImageIcon img , int offx, int offy)
+    {
+        int locX = entity.getLocation().x;
+        int locY = entity.getLocation().y;
+        //layout[locX][locY].getLabel().setIcon(layout[locX][locY].getImage());
+        layout[locX][locY].getLabel().setIcon( Images.combine( layout[locX][locY].getImage(), img, offx, offy ));
     }
     
     public Entity getUser( )

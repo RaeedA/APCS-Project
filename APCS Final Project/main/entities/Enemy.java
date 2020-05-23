@@ -15,45 +15,13 @@ public class Enemy extends Character
         super(room, p);
         type = "enemy";
         health = 100;
-        difficulty = 50;
+        difficulty = 30;
+        
         images = Images.getSkeleton();
         image = images[0];
         score = 0;
         randDecision = (int) (Math.random() * 100);
-    }
-
-    @Override
-    public void run()
-    {
-        room.addEntity(this);
-        while (isAlive)
-        {
-            if(health < 0)
-            {
-                isAlive = false;
-                
-                System.out.print( "enemy is dead" );
-            }
-            else if(randDecision < 0)
-            {
-                randDecision = (int) (Math.random() * 100);
-            }
-            else if(randDecision < difficulty)
-            {
-                charSleep( 400 );
-                update();
-                randDecision = randDecision - (int) (Math.random() * 2 + 1);
-            }
-            else
-            {
-                charSleep( 200 );
-                idle();
-                randDecision--;
-            }
-        }
-        die();
-        
-        
+        room.addEntity( this );
     }
     
     public void update()

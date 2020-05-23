@@ -17,10 +17,12 @@ public class User extends Character
     {
         super(room, p);
         type = "user";
+        images = Images.getWarrior();
+        attackImages = Images.getAttackWarrior();
+        image = images[0];
+        
         attacking = false;
         moving = false;
-        images = Images.getWarrior();
-        image = images[0];
         attackDamage = 1000;
         health = 1000;
         room.addEntity( this );
@@ -37,6 +39,7 @@ public class User extends Character
                 if (attack((Character)surrounding))
                 {
                     addToScore(( (Enemy)surrounding ).getScore());
+                    System.out.println(score);
                 }
             }
         }
