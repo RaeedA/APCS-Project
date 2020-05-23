@@ -16,7 +16,7 @@ public abstract class GameCharacter extends Entity
     protected ImageIcon[] images;
     protected ImageIcon[] attackImages;
     protected enum Directions{up, down, left, right};
-    protected Directions direction;
+    protected Directions facing;
     
     public GameCharacter(Room room, Point p)
     {
@@ -67,19 +67,19 @@ public abstract class GameCharacter extends Entity
         }
         int offx = 0;
         int offy = 0;
-        if (direction == Directions.right)
+        if (facing == Directions.right)
         {
             offx = 1;
         }
-        else if (direction == Directions.left)
+        else if (facing == Directions.left)
         {
             offx = -1;
         }
-        else if (direction == Directions.up)
+        else if (facing == Directions.up)
         {
             offy = 1;
         }
-        else if (direction == Directions.down)
+        else if (facing == Directions.down)
         {
             offy = -1;
         }
@@ -109,22 +109,22 @@ public abstract class GameCharacter extends Entity
     
     public void faceUp()
     {
-        direction = Directions.up;
+        facing = Directions.up;
     }
     
     public void faceDown()
     {
-        direction = Directions.down;
+        facing = Directions.down;
     }
     
     public void faceRight()
     {
-        direction = Directions.right;
+        facing = Directions.right;
     }
     
     public void faceLeft()
     {
-        direction = Directions.left;
+        facing = Directions.left;
     }
     
     

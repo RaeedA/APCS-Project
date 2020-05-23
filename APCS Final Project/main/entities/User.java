@@ -34,7 +34,7 @@ public class User extends GameCharacter
         if (attacking)
         {
             Entity frontEnemy;
-            switch(direction)
+            switch(facing)
             {
                 case up:
                     frontEnemy = room.getUpEntity( location );
