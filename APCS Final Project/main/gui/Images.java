@@ -39,7 +39,7 @@ public class Images
     private static ImageIcon right2 = resize(crop(tileSet, 80, 16, 16, 16 ), 32, 32);
     private static ImageIcon right3 = resize(crop(tileSet, 80, 32, 16, 16 ), 32, 32);
     private static ImageIcon right4 = resize(crop(tileSet, 80, 48, 16, 16 ), 32, 32);
-    private static ImageIcon dark = resize(crop(tileSet, 128, 112, 16, 16 ), 32, 32);
+    private static BufferedImage dark = crop(tileSet, 128, 112, 16, 16 );
     private static ImageIcon torch1 = resize(loadImg("main/images/torch_1.png"), 32, 32);
     private static ImageIcon torch2 = resize(loadImg("main/images/torch_2.png"), 32, 32);
     private static ImageIcon torch3 = resize(loadImg("main/images/torch_3.png"), 32, 32);
@@ -84,9 +84,9 @@ public class Images
     {
         return new ImageIcon[] {left1, left2, left3, left4};
     }
-    public static ImageIcon getEmpty()
+    public static ImageIcon getEmpty(int length, int height)
     {
-        return dark;
+        return resize(dark, length*32, height*32);
     }
     public static ImageIcon[] getFrontTorch()
     {
@@ -100,14 +100,11 @@ public class Images
     {
         return new ImageIcon[] {skeleton1, skeleton2, skeleton3, skeleton4};
     }
-    public static ImageIcon[] getHealthBars(int size)
+    public static ImageIcon[] getHealthBars(int mult)
     {
-        int multiplier = ((size*32)/80)/2;
-        ImageIcon fuLL = resize(full, 80*multiplier, 9*multiplier);
-        ImageIcon emPTY = resize(empty, 80*multiplier, 9*multiplier);
-        return new ImageIcon[] {fuLL, emPTY};
+        return new ImageIcon[] {resize(crop(full, 8, 0, 64, 9), (int)( (128*mult*0.8)+0.5 ), 16*mult), resize(empty, 128*mult, 16*mult)};
     }
-    
+
     public static ImageIcon combine(ImageIcon bottom, ImageIcon top)
     {
         BufferedImage finalImage = new BufferedImage(bottom.getIconWidth(), bottom.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -117,16 +114,27 @@ public class Images
         g.dispose();
         return new ImageIcon(finalImage);
     }
+
+    public static ImageIcon combine(ImageIcon bottom, ImageIcon top, int offx, int offy)
+    {
+        BufferedImage finalImage = new BufferedImage(bottom.getIconWidth(), bottom.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = finalImage.createGraphics();
+        g.drawImage(bottom.getImage(), 0, 0, null);
+        g.drawImage(top.getImage(), offx, offy, null);
+        g.dispose();
+        return new ImageIcon(finalImage);
+    }
+
     public static ImageIcon resize(BufferedImage img, int newW, int newH) {
         Image image = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
         return new ImageIcon(image);
     }  
-    
+
     public static BufferedImage crop(BufferedImage img, int x, int y, int width, int height)
     {
         return img.getSubimage( x, y, width, height );
     }
-    
+
     public static BufferedImage loadImg(String path)
     {
         try
