@@ -42,10 +42,6 @@ public class Level extends JFrame implements KeyListener
         constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.BOTH;
         roomNum = 1;
-        Room newRoom = new Room(15);
-        generateRoom( newRoom, 1);
-        user = new User(newRoom, new Point(8, newRoom.getMap().getLayout()[0].length - 1));
-        user.start();
         /*c.gridx = 1;
         c.gridy = 0;
         
@@ -79,7 +75,10 @@ public class Level extends JFrame implements KeyListener
     
     public void startGame()
     {
-        generateRoom(new Room(15), 1);
+        Room newRoom = new Room(15);
+        generateRoom(newRoom, 1);
+        user = new User(newRoom, new Point(8, newRoom.getMap().getLayout()[0].length - 1));
+        user.start();
         pack();
         setMinimumSize(getSize());
         setSize(getSize().width+30, getSize().height+30);
