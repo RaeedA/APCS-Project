@@ -24,8 +24,13 @@ public class MenuScreen extends Screen
         super();
         
         
-        JButton button = new JButton( "Start Game" );
-        button.setBounds( 350, 300, 100, 50 );
+        JButton button = new JButton( "Start Game", Images.getButton() );
+        button.setBounds( 340, 300, 120, 50 );
+        button.setFont( Images.loadFont( 14 ) );
+        button.setHorizontalTextPosition(JButton.CENTER);
+        button.setVerticalTextPosition( JButton.CENTER );
+//        button.setVerticalAlignment( JButton.CENTER );
+//        button.setHorizontalAlignment( JButton.CENTER );
         this.add( button );
         ImageIcon background = new ImageIcon(
             this.getClass().getResource( "DungeonBackground1.gif" ) );

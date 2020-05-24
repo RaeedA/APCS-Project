@@ -68,6 +68,7 @@ public class Images
     private static BufferedImage healthbars = loadImg("main/images/Healthbars.png");
     private static BufferedImage full = crop(healthbars, 33, 37, 80, 9);
     private static BufferedImage empty = crop(healthbars, 33, 51, 80, 9);
+    private static ImageIcon button = resize(crop(loadImg("main/images/buttons.png"), 0, 16, 34, 16), 134, 50);
     
     public Images()
     { 
@@ -121,7 +122,10 @@ public class Images
     {
         return new ImageIcon[] {resize(crop(full, 8, 0, 64, 9), (int)( (128*mult*0.8)+0.5 ), 16*mult), resize(empty, 128*mult, 16*mult)};
     }
-
+    public static ImageIcon getButton()
+    {
+        return button;
+    }
     public static ImageIcon combine(ImageIcon bottom, ImageIcon top)
     {
         BufferedImage finalImage = new BufferedImage(bottom.getIconWidth(), bottom.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
