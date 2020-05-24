@@ -1,15 +1,21 @@
 package main;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import gui.Level;
 import screens.Screen;
 import screens.MenuScreen;
+import screens.EndScreen;
 
 public class Game extends Thread
 {
     Level lvl;
     MenuScreen menu;
+    EndScreen end;
     boolean started = false;
     public Game()
     {
@@ -27,6 +33,7 @@ public class Game extends Thread
         lvl = new Level("gui");
         menu = new MenuScreen();
         menu.setVisible( true );
+        
         //menu.setVisible( false );
         //lvl.setVisible( true );
         

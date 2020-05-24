@@ -23,6 +23,7 @@ public class Level extends JFrame implements KeyListener
     private User user;
     private Container pane;
     private GridBagConstraints constraints;
+    private int roomNum;
     
     
     public Level(String text)
@@ -40,7 +41,8 @@ public class Level extends JFrame implements KeyListener
         pane.setLayout(new GridBagLayout());
         constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.BOTH;
-        generateRoom(new Room(15), 1); 
+        roomNum = 1;
+        generateRoom(new Room(15), 1);
         /*c.gridx = 1;
         c.gridy = 0;
         
@@ -125,7 +127,8 @@ public class Level extends JFrame implements KeyListener
                 ene.start();
                 break;
             case KeyEvent.VK_X:
-                generateRoom(new Room(15), 2);
+                roomNum++;
+                generateRoom(new Room(15), roomNum);
                 break;
             default:
                 break;

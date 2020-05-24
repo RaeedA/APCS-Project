@@ -1,5 +1,10 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -159,5 +164,39 @@ public class Images
             e.printStackTrace();
             return null;
         }
+    }
+    
+    public static Font loadFont( float size )
+    {
+        String path = "main/res/slkscr.ttf";
+        try
+        {
+            return Font.createFont( Font.TRUETYPE_FONT,  new File(path) ).deriveFont( Font.PLAIN, size );
+        }
+        catch ( FontFormatException e )
+        {
+            e.printStackTrace();
+            System.exit( 1 );
+        }
+        catch ( IOException e )
+        {
+            e.printStackTrace();
+            System.exit( 1 );
+        }
+        return null;
+    }
+    public static void drawText(Graphics g, String text, int xPos, int yPos, boolean center, Color color, Font font)
+    {
+        g.setColor( color );
+        g.setFont( font );
+        int x = xPos;
+        int y = yPos;
+        if( center )
+        {
+            FontMetrics fontMetric = g.getFontMetrics( font );
+            x = xPos - fontMetric.stringWidth( text ) / 2;
+            y = (yPos - fontMetric.getHeight() / 2) + fontMetric.getAscent();
+        }
+        g.drawString( text, x, y );
     }
 }
