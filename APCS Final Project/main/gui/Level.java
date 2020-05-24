@@ -42,20 +42,20 @@ public class Level extends JFrame implements KeyListener
         constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.BOTH;
         roomNum = 1;
-        generateRoom(new Room(15), 1);
+        Room newRoom = new Room(15);
+        generateRoom( newRoom, 1);
+        user = new User(newRoom, new Point(8, newRoom.getMap().getLayout()[0].length - 1));
+        user.start();
         /*c.gridx = 1;
         c.gridy = 0;
         
         Room room2 = new Room(10);
         pane.add(room2,c);
         rooms.add( room2 );*/
-        
-        pack();
-        setMinimumSize(getSize());
-        setSize(getSize().width+30, getSize().height+30);
+
     }
     
-    public void generateRoom(Room room, int roomNum)
+    public Room generateRoom(Room room, int roomNum)
     {
         if(roomNum > 1)
         {
@@ -70,19 +70,20 @@ public class Level extends JFrame implements KeyListener
         {
             (new Enemy(room, new Point((int) (Math.random() * 13) + 1, (int) (Math.random() * 13) + 1))).start();
         }
-        user = new User(room, new Point(8, 12));
-        user.start();
         constraints.gridx = 0;
         constraints.gridy = 0;
         Top top = new Top(room.getLength());
         pane.add( top, constraints );
-        
+        return room;
     }
     
-    
-    
-    
-    
+    public void startGame()
+    {
+        generateRoom(new Room(15), 1);
+        pack();
+        setMinimumSize(getSize());
+        setSize(getSize().width+30, getSize().height+30);
+    }
     public Room getRoom(int index)
     {
         return rooms.get( index );
@@ -127,8 +128,6 @@ public class Level extends JFrame implements KeyListener
                 ene.start();
                 break;
             case KeyEvent.VK_X:
-                roomNum++;
-                generateRoom(new Room(15), roomNum);
                 break;
             default:
                 break;

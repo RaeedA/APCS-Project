@@ -9,17 +9,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import entities.Entity;
+import main.Launcher;
 
 @SuppressWarnings("serial")
 public class Room extends JPanel
 {
-    Tile[][] layout;
-    ArrayList<Entity> entities;
+    private Tile[][] layout;
+    private ArrayList<Entity> entities;
+    private Map map;
     
     public Room(int size)
     {
         entities = new ArrayList<Entity>(5);
-        Map map = new Map(size, 3);
+        map = new Map(size, 3);
         layout = map.getLayout();
         setLayout(new GridBagLayout());
         GridBagConstraints con = new GridBagConstraints();
@@ -52,10 +54,11 @@ public class Room extends JPanel
     
     public void move(Entity entity, Point p)
     {
-        if (entity.getLocation().distance( p ) > 1.5 || p.x >= layout.length || p.y >= layout[0].length || !layout[p.x][p.y].isPassable())
+        if (entity.getLocation().distance( p ) > 1.5 || p.y < 0 || p.x >= layout.length || p.y >= layout[0].length || !layout[p.x][p.y].isPassable())
         {
             return;
         }
+        
         Tile newTile = layout[p.x][p.y];
         Tile current = layout[entity.getLocation().x][entity.getLocation().y];
         newTile.setPassable( false );
@@ -155,6 +158,11 @@ public class Room extends JPanel
     public int getLength()
     {
         return layout.length;
+    }
+    
+    public Map getMap()
+    {
+        return map;
     }
     
     public Point findEmpty(Point p)

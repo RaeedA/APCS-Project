@@ -46,10 +46,20 @@ public abstract class Entity extends Thread
     {
         return current;
     }
+    
+    public Room getRoom()
+    {
+        return room;
+    }
+    
+    public void setRoom( Room room )
+    {
+        this.room = room;
+        setLocation( new Point(getLocation().x, 0 ));
+    }
     protected void move(Point p)
     {
         room.move( this, p );
     }
     
-    //TODO: More methods
 }

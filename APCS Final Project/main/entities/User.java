@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import gui.Images;
 import gui.Room;
+import main.Launcher;
 
 public class User extends GameCharacter
 {
@@ -36,6 +37,11 @@ public class User extends GameCharacter
         }
         if( moving )
         {
+            if(dy < 0 && (getLocation().equals( new Point(8, 0) ) || getLocation().equals( new Point(9, 0) )))
+            {
+                Room nextRoom = Launcher.getGame().getLevel().generateRoom( new Room(15), 2 );
+                setLocation(new Point(getLocation().x, nextRoom.getMap().getLayout()[0].length-1));
+            }
             move( front );
         }
         else

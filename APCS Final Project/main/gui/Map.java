@@ -7,6 +7,10 @@ import javax.swing.JLabel;
 public class Map
 {
     private Tile[][] layout;
+    private Tile leftExitTile;
+    private Tile rightExitTile;
+    private Tile leftEntranceTile;
+    private Tile rightEntranceTile;
     
     public Map(int size, int torchDistance)
     {
@@ -38,7 +42,14 @@ public class Map
                 layout[col][r] = new Tile(true, new JLabel(floor[(int)(Math.random()*8)]), "floor");
             }
         }
-        
+        leftExitTile = new Tile(true, new JLabel(floor[(int)Math.random()*8]), "floor");
+        rightExitTile = new Tile(true, new JLabel(floor[(int)Math.random()*8]), "floor");
+        leftEntranceTile = new Tile(true, new JLabel(floor[(int)Math.random()*8]), "floor");
+        rightEntranceTile = new Tile(true, new JLabel(floor[(int)Math.random()*8]), "floor");
+        layout[8][0] = leftExitTile;
+        layout[9][0] = rightExitTile;
+        layout[8][size-1] = leftEntranceTile;
+        layout[9][size-1] = rightEntranceTile;
         //Side Walls
         ImageIcon[] rwall = Images.getRight();
         ImageIcon[] lwall = Images.getLeft();
@@ -58,6 +69,10 @@ public class Map
         ImageIcon[] bottom = Images.getBottom();
         for (int c = 1; c<size-1; c++)
         {
+            if(c == 8 || c == 9)
+            {
+                continue;
+            }
             if ((c-1)%torchDistance != 0)
             {
                 layout[c][0] = new Tile(false, new JLabel(top[(int)(Math.random()*4)]), "topwall");
