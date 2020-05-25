@@ -136,7 +136,6 @@ public class Room extends JPanel
     public User getUser( )
     {
         Entity entity;
-        
         for( int i = 0; i < entities.size(); i++)
         {
             entity = entities.get( i );
@@ -150,8 +149,10 @@ public class Room extends JPanel
     
     public Entity entityAt( Point location )
     {
-        for( Entity entity : entities)
+        Entity entity;
+        for( int i = 0; i < entities.size(); i++)
         {
+            entity = entities.get(i);
             if(entity.getLocation().equals( location ))
             {
                 return entity;
