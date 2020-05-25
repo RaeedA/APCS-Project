@@ -64,6 +64,7 @@ public class User extends GameCharacter
     
     public void die()
     {
+        Launcher.getGame().getLevel().setUserLevelScore( score );
         super.die();
         Launcher.getGame().endGame();
     }
@@ -116,7 +117,6 @@ public class User extends GameCharacter
             levelUp();
         }
         addToScore(other.getScore());
-        Launcher.getGame().getLevel().setUserLevelScore( score );
     }
 
     @Override

@@ -95,7 +95,7 @@ public abstract class GameCharacter extends Entity
             }
             room.redraw( this, images[iconNum], offx, offy);
             enemy.setHealth( enemy.getHealth() - attackDamage );
-            if (enemy.health < 0)
+            if (enemy.health <= 0)
             {
                 successKill(enemy);
             }
