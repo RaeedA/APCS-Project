@@ -42,7 +42,7 @@ public abstract class GameCharacter extends Entity
         idle();
     }
     
-    protected void charSleep( int duration )
+    public void charSleep( int duration )
     {
         try
         {
@@ -89,7 +89,7 @@ public abstract class GameCharacter extends Entity
                 iconNum = 0;
             }
             room.redraw( this, images[iconNum], offx, offy);
-            enemy.setHealth( enemy.getHealth()-attackDamage );
+            enemy.setHealth( enemy.getHealth() - attackDamage );
             if (enemy.health < 0)
             {
                 successKill(enemy);
@@ -142,7 +142,7 @@ public abstract class GameCharacter extends Entity
         while(isAlive)
         {
             charSleep( 200 );
-            if(health < 0)
+            if(health <= 0)
             {
                 isAlive = false;
                 System.out.println(getType() + " is dead ");

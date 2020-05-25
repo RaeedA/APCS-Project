@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -13,10 +14,12 @@ import screens.EndScreen;
 
 public class Game extends Thread
 {
-    Level lvl;
-    MenuScreen menu;
-    EndScreen end;
-    boolean started = false;
+    private Level lvl;
+    private MenuScreen menu;
+    private EndScreen end;
+    private ArrayList<Integer> scores;
+    
+    
     public Game()
     {
 //        SwingUtilities.invokeLater( new Runnable() {
@@ -32,7 +35,9 @@ public class Game extends Thread
 //        });
         lvl = new Level("gui");
         menu = new MenuScreen();
+        
         menu.setVisible( true );
+        scores = new ArrayList<Integer>(4);
         
         //menu.setVisible( false );
         //lvl.setVisible( true );
@@ -40,17 +45,31 @@ public class Game extends Thread
         
     }
     
-    public void run()
+    public void endGame()
     {
-        while(true)
-        {
-            
-        }
-        
+        lvl.setVisible( false );
+        scores.add( lvl.getUserLevelScore() );
+        end = new EndScreen();
+        end.setVisible( true );
+    }
+    
+    public MenuScreen getMenu()
+    {
+        return menu;
     }
     
     public Level getLevel()
     {
         return lvl;
+    }
+    
+    public void sortScores( int newScore )
+    {
+
+    }
+    
+    public ArrayList<Integer> getScores()
+    {
+        return scores;
     }
 }

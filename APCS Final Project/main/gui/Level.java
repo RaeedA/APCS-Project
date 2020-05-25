@@ -24,6 +24,7 @@ public class Level extends JFrame implements KeyListener
     private Container pane;
     private GridBagConstraints constraints;
     private int roomNum;
+    private int userLevelScore;
     
     
     public Level(String text)
@@ -83,9 +84,15 @@ public class Level extends JFrame implements KeyListener
         setMinimumSize(getSize());
         setSize(getSize().width+30, getSize().height+30);
     }
-    public Room getRoom(int index)
+    
+    public int getUserLevelScore()
     {
-        return rooms.get( index );
+        return userLevelScore;
+    }
+    
+    public void setUserLevelScore( int userScore )
+    {
+        userLevelScore = userScore;
     }
 
     @Override
@@ -120,13 +127,14 @@ public class Level extends JFrame implements KeyListener
                 user.faceLeft();
                 break;
             case KeyEvent.VK_Q:
-                user.setAttacking( true );
+                //user.setAttacking( true );
                 break;
             case KeyEvent.VK_O:
                 Enemy ene = new Enemy(rooms.get( 0 ), new Point(1,1));
                 ene.start();
                 break;
             case KeyEvent.VK_X:
+                user.setHealth( 0 );
                 break;
             default:
                 break;
@@ -157,7 +165,7 @@ public class Level extends JFrame implements KeyListener
                 user.setDx(0);
                 break;
             case KeyEvent.VK_Q:
-                user.setAttacking( false) ;
+                user.setAttacking( true ) ;
                 break;
             default:
                 break;

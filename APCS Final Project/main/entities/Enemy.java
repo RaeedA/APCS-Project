@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import gui.Images;
 import gui.Room;
+import main.Launcher;
 
 public class Enemy extends GameCharacter
 {
@@ -16,7 +17,7 @@ public class Enemy extends GameCharacter
         type = "enemy";
         health = 100;
         difficulty = 30;
-        attackDamage = 0;
+        attackDamage = 25;
         
         images = Images.getSkeleton();
         image = images[0];
@@ -27,15 +28,25 @@ public class Enemy extends GameCharacter
     
     public void update()
     {
-        if (randDecision < difficulty)
+        if(room.getUser() == null)
+        {
+            isAlive = false;
+            Launcher.getGame().endGame();
+        }
+        else if (randDecision < difficulty)
         {
             moveToPlayer();
+            if(randDecision % ((int)(Math.random() *10) + 1 ) == 0)
+            {
+                attack();
+                System.out.println(room.getUser().getHealth());
+            }
         }
         else
         {
             idle();
         }
-        randDecision = (int) (Math.random() * 100);
+        randDecision = (int) (Math.random() * 250);
     }
     
     public int getScore()
@@ -44,7 +55,8 @@ public class Enemy extends GameCharacter
     }
     public void moveToPlayer()
     {
-        Point userLocation = room.getUser().getLocation();
+        User user = room.getUser();
+        Point userLocation = user.getLocation();
         int myX = getLocation().x;
         int myY = getLocation().y;
         int userX = userLocation.x;
@@ -80,6 +92,7 @@ public class Enemy extends GameCharacter
     @Override
     protected void successKill(GameCharacter other)
     {
+        room.stopEntities();
         return;
     }
 
@@ -93,5 +106,7 @@ public class Enemy extends GameCharacter
     {
         this.difficulty = difficulty;
     }
+    
+    
     
 }

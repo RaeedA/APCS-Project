@@ -10,6 +10,9 @@ public class User extends GameCharacter
 {
     private int dx = 0;
     private int dy = 0;
+    private int level;
+    private int maxHealth;
+    private int killCount;
     private boolean attacking;
     private boolean moving;
     
@@ -23,17 +26,20 @@ public class User extends GameCharacter
         
         attacking = false;
         moving = false;
-        attackDamage = 1000;
-        health = 1000;
+        
+        attackDamage = 10;
+        health = 500;
+        maxHealth = 500;
         room.addEntity( this );
     }
     
     public void update()
     {
         front = new Point(getLocation().x + dx, getLocation().y + dy);
-        if (attacking )
+        if ( attacking )
         {
             attack();
+            attacking = false;
         }
         if( moving )
         {
@@ -96,11 +102,24 @@ public class User extends GameCharacter
     {
         return moving;
     }
+    public void levelUp()
+    {
+        level++;
+        attackDamage += (level * 10);
+        maxHealth += level * 10;
+        health = maxHealth;
+    }
 
     @Override
     protected void successKill(GameCharacter other)
     {
+        killCount++;
+        if(killCount > level * 3)
+        {
+            levelUp();
+        }
         addToScore(other.score);
+        Launcher.getGame().getLevel().setUserLevelScore( score );
     }
 
     @Override

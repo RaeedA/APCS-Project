@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import entities.Entity;
+import entities.GameCharacter;
+import entities.User;
 import main.Launcher;
 
 @SuppressWarnings("serial")
@@ -20,7 +22,7 @@ public class Room extends JPanel
     
     public Room(int size)
     {
-        entities = new ArrayList<Entity>(5);
+        entities = new ArrayList<Entity>();
         map = new Map(size, 3);
         layout = map.getLayout();
         setLayout(new GridBagLayout());
@@ -131,13 +133,13 @@ public class Room extends JPanel
         layout[locX][locY].getLabel().setIcon( Images.combine( layout[locX][locY].getImage(), img, offx, offy ));
     }
     
-    public Entity getUser( )
+    public User getUser( )
     {
         for( Entity entity : entities)
         {
             if(entity.getType().equals( "user" ))
             {
-                return entity;
+                return (User) entity;
             }
         }
         return null;
@@ -153,6 +155,10 @@ public class Room extends JPanel
             }
         }
         return null;
+    }
+    
+    public void stopEntities()
+    {
     }
     
     public int getLength()

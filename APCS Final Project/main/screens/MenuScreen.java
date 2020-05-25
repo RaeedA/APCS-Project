@@ -29,8 +29,6 @@ public class MenuScreen extends Screen
         button.setFont( Images.loadFont( 14 ) );
         button.setHorizontalTextPosition(JButton.CENTER);
         button.setVerticalTextPosition( JButton.CENTER );
-//        button.setVerticalAlignment( JButton.CENTER );
-//        button.setHorizontalAlignment( JButton.CENTER );
         this.add( button );
         ImageIcon background = new ImageIcon(
             this.getClass().getResource( "DungeonBackground1.gif" ) );
