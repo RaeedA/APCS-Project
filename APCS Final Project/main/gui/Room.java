@@ -135,8 +135,11 @@ public class Room extends JPanel
     
     public User getUser( )
     {
-        for( Entity entity : entities)
+        Entity entity;
+        
+        for( int i = 0; i < entities.size(); i++)
         {
+            entity = entities.get( i );
             if(entity.getType().equals( "user" ))
             {
                 return (User) entity;

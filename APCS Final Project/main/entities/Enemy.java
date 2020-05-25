@@ -10,7 +10,6 @@ public class Enemy extends GameCharacter
 {
     private int randDecision;
     private int difficulty;
-    private int score;
     public Enemy(Room room, Point p)
     {
         super(room, p);
@@ -21,7 +20,7 @@ public class Enemy extends GameCharacter
         
         images = Images.getSkeleton();
         image = images[0];
-        score = 0;
+        score = 10 * difficulty;
         randDecision = (int) (Math.random() * 100);
         room.addEntity( this );
     }
@@ -31,7 +30,7 @@ public class Enemy extends GameCharacter
         if(room.getUser() == null)
         {
             isAlive = false;
-            Launcher.getGame().endGame();
+            return;
         }
         else if (randDecision < difficulty)
         {
@@ -49,7 +48,7 @@ public class Enemy extends GameCharacter
         randDecision = (int) (Math.random() * 250);
     }
     
-    public int getScore()
+    public long getScore()
     {
         return score;
     }

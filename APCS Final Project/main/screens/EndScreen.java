@@ -16,14 +16,14 @@ import main.Launcher;
 
 public class EndScreen extends Screen
 {
-    private ArrayList<Integer> scoreBoard;
+    private ArrayList<Long> scoreBoard;
     private int yDifference;
     public EndScreen()
     {
         super();
 
         JButton button = new JButton( "Retry", Images.getButton() );
-        button.setBounds( 340, 300, 120, 50 );
+        button.setBounds( 340, 400, 120, 50 );
         button.setFont( Images.loadFont( 14 ) );
         button.setHorizontalTextPosition(JButton.CENTER);
         button.setVerticalTextPosition( JButton.CENTER );
@@ -39,12 +39,12 @@ public class EndScreen extends Screen
             {
                 super.paintComponent( g );
                 Images.drawText( g, "Game Over", 400, 75, true, Color.WHITE, Images.loadFont( 60 ) );
-                Images.drawText( g, "HighScores:", 400, 125, true, Color.WHITE, Images.loadFont( 45 ) );
-                yDifference = 25;
-                for(Integer integer : scoreBoard)
+                Images.drawText( g, "HighScores:", 400, 125, true, Color.YELLOW, Images.loadFont( 45 ) );
+                yDifference = 50;
+                for(Long score : scoreBoard)
                 {
-                    Images.drawText( g, integer.toString(), 400, 125 + yDifference, true, Color.WHITE, Images.loadFont( 30 ) );
-                    yDifference += 25;
+                    Images.drawText( g, score.toString(), 400, 125 + yDifference, true, Color.YELLOW, Images.loadFont( 38 ) );
+                    yDifference += 45;
                 }
             }
         };

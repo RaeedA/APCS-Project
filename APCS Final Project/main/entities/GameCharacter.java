@@ -12,7 +12,7 @@ public abstract class GameCharacter extends Entity
     protected int attackDamage;
     protected boolean isAlive;
     protected int iconNum;
-    protected int score;
+    protected long score;
     protected Point front;
     protected ImageIcon[] images;
     protected ImageIcon[] attackImages;
@@ -34,6 +34,11 @@ public abstract class GameCharacter extends Entity
     public void setHealth(int health)
     {
         this.health = health;
+    }
+    
+    public long getScore()
+    {
+        return score;
     }
     
     protected void move(Point p)

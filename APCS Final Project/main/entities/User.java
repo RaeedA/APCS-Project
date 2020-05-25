@@ -27,6 +27,7 @@ public class User extends GameCharacter
         attacking = false;
         moving = false;
         
+        score = 0;
         attackDamage = 10;
         health = 500;
         maxHealth = 500;
@@ -61,18 +62,14 @@ public class User extends GameCharacter
         }
     }
     
-    
-    public int getScore()
+    public void die()
     {
-        return score;
+        super.die();
+        Launcher.getGame().endGame();
     }
     
-    public void setScore( int score )
-    {
-        this.score = score;
-    }
     
-    public void addToScore(int points)
+    public void addToScore(long points)
     {
         score += points;
     }
@@ -118,7 +115,7 @@ public class User extends GameCharacter
         {
             levelUp();
         }
-        addToScore(other.score);
+        addToScore(other.getScore());
         Launcher.getGame().getLevel().setUserLevelScore( score );
     }
 

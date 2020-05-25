@@ -24,7 +24,7 @@ public class Level extends JFrame implements KeyListener
     private Container pane;
     private GridBagConstraints constraints;
     private int roomNum;
-    private int userLevelScore;
+    private long userLevelScore;
     
     
     public Level(String text)
@@ -32,6 +32,7 @@ public class Level extends JFrame implements KeyListener
         super(text);
         rooms = new ArrayList<Room>();
         addKeyListener( this );
+        userLevelScore = 0;
         setup();
     }
     
@@ -85,12 +86,12 @@ public class Level extends JFrame implements KeyListener
         setSize(getSize().width+30, getSize().height+30);
     }
     
-    public int getUserLevelScore()
+    public long getUserLevelScore()
     {
         return userLevelScore;
     }
     
-    public void setUserLevelScore( int userScore )
+    public void setUserLevelScore( long userScore )
     {
         userLevelScore = userScore;
     }

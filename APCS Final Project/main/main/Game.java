@@ -17,7 +17,7 @@ public class Game extends Thread
     private Level lvl;
     private MenuScreen menu;
     private EndScreen end;
-    private ArrayList<Integer> scores;
+    private ArrayList<Long> scores;
     
     
     public Game()
@@ -37,7 +37,7 @@ public class Game extends Thread
         menu = new MenuScreen();
         
         menu.setVisible( true );
-        scores = new ArrayList<Integer>(4);
+        scores = new ArrayList<Long>(4);
         
         //menu.setVisible( false );
         //lvl.setVisible( true );
@@ -68,7 +68,7 @@ public class Game extends Thread
 
     }
     
-    public ArrayList<Integer> getScores()
+    public ArrayList<Long> getScores()
     {
         return scores;
     }
