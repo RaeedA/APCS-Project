@@ -6,8 +6,6 @@ import java.awt.GridBagLayout;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -18,7 +16,8 @@ import main.Launcher;
 @SuppressWarnings("serial")
 public class Level extends JFrame implements KeyListener
 {    
-    private List<Room> rooms;
+    private Room activeRoom;
+    private Room previousRoom;
     private User user;
     private Container pane;
     private GridBagConstraints constraints;
@@ -29,7 +28,6 @@ public class Level extends JFrame implements KeyListener
     public Level(String text)
     {
         super(text);
-        rooms = new ArrayList<Room>();
         addKeyListener( this );
         userLevelScore = 0;
         setup();
@@ -48,13 +46,14 @@ public class Level extends JFrame implements KeyListener
     {
         if(!isFirst)
         {
-            closeRoom(rooms.get( 0 ));
+            previousRoom = activeRoom;
+            closeRoom(previousRoom);
         }
         constraints.gridx = 0;
         constraints.gridy = 1;
         room.setRoomNum( roomNum );
         pane.add(room, constraints);
-        rooms.add( room );
+        activeRoom = room;
         for(int i = 0; i < Math.random() * 10 + 1; i++)
         {
             (new Enemy(room, new Point((int) (Math.random() * 13) + 1, (int) (Math.random() * 13) + 1))).start();
@@ -80,10 +79,11 @@ public class Level extends JFrame implements KeyListener
     
     public void endGame( long userScore )
     {
-        for(int i = rooms.size() - 1; i > 0; i--)
+        if(previousRoom != null)
         {
-            closeRoom(rooms.get( i ));
+            closeRoom(previousRoom);
         }
+        closeRoom(activeRoom);
         userLevelScore = userScore;
         Launcher.getGame().endGame();
     }
@@ -92,7 +92,6 @@ public class Level extends JFrame implements KeyListener
     {
         room.clearEnemies();
         pane.remove( room );
-        rooms.remove( room );
     }
     
     public long getUserLevelScore()
@@ -134,7 +133,7 @@ public class Level extends JFrame implements KeyListener
             case KeyEvent.VK_Q:
                 break;
             case KeyEvent.VK_O:
-                Enemy ene = new Enemy(rooms.get( 0 ), new Point(1,1));
+                Enemy ene = new Enemy(activeRoom, new Point(1,1));
                 ene.start();
                 break;
             case KeyEvent.VK_X:
