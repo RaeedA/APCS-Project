@@ -18,13 +18,15 @@ public class EndScreen extends Screen
 {
     private ArrayList<Long> scoreBoard;
     private int yDifference;
+    private long recentScore;
+    private boolean isNewestRecord;
     public EndScreen()
     {
         super();
 
         JButton button = new JButton( "Retry", Images.getButton() );
         button.setBounds( 340, 400, 120, 50 );
-        button.setFont( Images.loadFont( 14 ) );
+        button.setFont( Images.loadFont( 20 ) );
         button.setHorizontalTextPosition(JButton.CENTER);
         button.setVerticalTextPosition( JButton.CENTER );
         this.add( button );
@@ -39,12 +41,27 @@ public class EndScreen extends Screen
             {
                 super.paintComponent( g );
                 Images.drawText( g, "Game Over", 400, 75, true, Color.WHITE, Images.loadFont( 60 ) );
-                Images.drawText( g, "HighScores:", 400, 125, true, Color.YELLOW, Images.loadFont( 45 ) );
-                yDifference = 50;
-                for(Long score : scoreBoard)
+                Images.drawText( g, "HighScores:", 400, 135, true, Color.YELLOW, Images.loadFont( 47 ) );
+                yDifference = 60;
+                Long score;
+                for(int i = 0; i < scoreBoard.size() && i < 5; i++)
                 {
-                    Images.drawText( g, score.toString(), 400, 125 + yDifference, true, Color.YELLOW, Images.loadFont( 38 ) );
-                    yDifference += 45;
+                    score = scoreBoard.get( i );
+                    if(i == 0)
+                    {
+                        Images.drawText( g, score.toString(), 400, 135 + yDifference, true, Color.YELLOW, Images.loadFont( 42 ) );
+                        yDifference += 25;
+                    }
+                    else
+                    {
+                        Images.drawText( g, score.toString(), 400, 135 + yDifference, true, Color.YELLOW, Images.loadFont( 36 ) );
+                    }
+                    yDifference += 35;
+                }
+                Images.drawText( g, "Your Score: " + recentScore, 400, 525, true, Color.YELLOW, Images.loadFont( 45 ) );
+                if(isNewestRecord)
+                {
+                    Images.drawText( g, "Your Newest Record!", 400, 570, true, Color.YELLOW, Images.loadFont( 25 ) );
                 }
             }
         };
@@ -61,5 +78,15 @@ public class EndScreen extends Screen
             
         }));
         this.pack();
+    }
+    
+    public void setRecentScore( long recentScore)
+    {
+        this.recentScore = recentScore;
+    }
+    
+    public void recentIsNewRecord( boolean isNewRecord )
+    {
+        isNewestRecord = isNewRecord;
     }
 }

@@ -3,6 +3,7 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -18,6 +19,8 @@ public class Game extends Thread
     private MenuScreen menu;
     private EndScreen end;
     private ArrayList<Long> scores;
+    private long recentScore;
+    private boolean isNewestRecord;
     
     
     public Game()
@@ -35,7 +38,6 @@ public class Game extends Thread
 //        });
         //lvl = new Level("gui");
         menu = new MenuScreen();
-        
         menu.setVisible( true );
         scores = new ArrayList<Long>(4);
         
@@ -47,9 +49,21 @@ public class Game extends Thread
     
     public void endGame()
     {
+        recentScore = lvl.getUserLevelScore();
         lvl.setVisible( false );
-        scores.add( lvl.getUserLevelScore() );
+        if(scores.size() > 0 && recentScore > scores.get( 0 ))
+        {
+            isNewestRecord = true;
+        }
+        else
+        {
+            isNewestRecord = false;
+        }
+        scores.add( recentScore );
+        sortScores();
         end = new EndScreen();
+        end.recentIsNewRecord(isNewestRecord);
+        end.setRecentScore( recentScore );
         end.setVisible( true );
     }
     
@@ -70,9 +84,10 @@ public class Game extends Thread
         return lvl;
     }
     
-    public void sortScores( int newScore )
+    public void sortScores(  )
     {
-
+        Collections.sort(scores);
+        Collections.reverse( scores );
     }
     
     public ArrayList<Long> getScores()
