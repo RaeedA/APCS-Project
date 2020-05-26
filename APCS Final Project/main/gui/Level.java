@@ -7,6 +7,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -17,11 +18,12 @@ import main.Launcher;
 @SuppressWarnings("serial")
 public class Level extends JFrame implements KeyListener
 {    
-    private ArrayList<Room> rooms;
+    private List<Room> rooms;
     private User user;
     private Container pane;
     private GridBagConstraints constraints;
     private long userLevelScore;
+    private Top top;
     
     
     public Level(String text)
@@ -59,7 +61,7 @@ public class Level extends JFrame implements KeyListener
         }
         constraints.gridx = 0;
         constraints.gridy = 0;
-        Top top = new Top(room.getLength());
+        top = new Top(room.getLength());
         top.setRoomNum( roomNum );
         pane.add( top, constraints );
         return room;

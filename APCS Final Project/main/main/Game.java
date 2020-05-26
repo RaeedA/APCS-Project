@@ -2,6 +2,7 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import gui.Level;
 import screens.MenuScreen;
@@ -12,7 +13,7 @@ public class Game extends Thread
     private Level lvl;
     private MenuScreen menu;
     private EndScreen end;
-    private ArrayList<Long> scores;
+    private List<Long> scores;
     
     
     public Game()
@@ -66,7 +67,7 @@ public class Game extends Thread
         Collections.reverse( scores );
     }
     
-    public ArrayList<Long> getScores()
+    public List<Long> getScores()
     {
         return scores;
     }

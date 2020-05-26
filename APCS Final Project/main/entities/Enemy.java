@@ -26,7 +26,7 @@ public class Enemy extends GameCharacter
     
     public void update()
     {
-        if(room.getUser() == null)
+        if(!userExists())
         {
             isAlive = false;
             return;
@@ -37,7 +37,6 @@ public class Enemy extends GameCharacter
             if(randDecision % ((int)(Math.random() *10) + 1 ) == 0)
             {
                 attack();
-                System.out.println(room.getUser().getHealth());
             }
         }
         else
@@ -104,6 +103,11 @@ public class Enemy extends GameCharacter
     public void setDifficulty(int difficulty)
     {
         this.difficulty = difficulty;
+    }
+    
+    private boolean userExists()
+    {
+        return room.getUser() != null;
     }
     
     

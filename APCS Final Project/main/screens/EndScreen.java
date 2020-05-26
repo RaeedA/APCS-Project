@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,7 +17,7 @@ import main.Launcher;
 @SuppressWarnings("serial")
 public class EndScreen extends Screen
 {
-    private ArrayList<Long> scoreBoard;
+    private List<Long> scoreBoard;
     private int yDifference;
     private long recentScore;
     private boolean isNewestRecord;

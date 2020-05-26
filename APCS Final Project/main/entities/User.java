@@ -63,6 +63,7 @@ public class User extends GameCharacter
         else
         {
             idle();
+            System.out.println(getHealth());
         }
     }
     

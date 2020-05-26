@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -17,7 +18,7 @@ import entities.User;
 public class Room extends JPanel
 {
     private Tile[][] layout;
-    private ArrayList<Entity> entities;
+    private List<Entity> entities;
     private Map map;
     private int roomNum;
     
