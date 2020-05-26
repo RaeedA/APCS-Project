@@ -24,7 +24,7 @@ public class EndScreen extends Screen
     {
         super();
 
-        JButton button = makeButton("Retry", Images.getButton(), 400, 325, 120, 50, 20);
+        JButton button = makeButton("Retry", Images.getButton(), 400, 425, 120, 50, 20);
         this.add( button );
         this.setBackgroundImg( "DungeonBackground2.gif", 800, 600 );
         this.getContentPane().add( ( makeLabel(background) ) );
