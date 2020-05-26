@@ -11,14 +11,12 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import gui.Images;
 
 
 public class MenuScreen extends Screen
 {
-    private boolean gameToStart = false;
     public MenuScreen()
     {
         super();
@@ -55,11 +53,6 @@ public class MenuScreen extends Screen
             
         }));
         this.pack();
-    }
-    
-    public boolean startGame()
-    {
-        return gameToStart;
     }
 
 }

@@ -12,7 +12,6 @@ import entities.Enemy;
 import entities.Entity;
 import entities.GameCharacter;
 import entities.User;
-import main.Launcher;
 
 @SuppressWarnings("serial")
 public class Room extends JPanel

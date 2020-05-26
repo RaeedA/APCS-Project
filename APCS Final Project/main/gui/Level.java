@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -10,21 +9,18 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import entities.Enemy;
-import entities.Entity;
 import entities.User;
 import main.Launcher;
 
+@SuppressWarnings("serial")
 public class Level extends JFrame implements KeyListener
 {    
     private ArrayList<Room> rooms;
     private User user;
     private Container pane;
     private GridBagConstraints constraints;
-    private int roomNum;
     private long userLevelScore;
     
     
@@ -44,13 +40,6 @@ public class Level extends JFrame implements KeyListener
         pane.setLayout(new GridBagLayout());
         constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.BOTH;
-        /*c.gridx = 1;
-        c.gridy = 0;
-        
-        Room room2 = new Room(10);
-        pane.add(room2,c);
-        rooms.add( room2 );*/
-
     }
     
     public Room generateRoom(Room room, boolean isFirst, int roomNum)
@@ -62,7 +51,6 @@ public class Level extends JFrame implements KeyListener
         constraints.gridx = 0;
         constraints.gridy = 1;
         room.setRoomNum( roomNum );
-        this.roomNum = roomNum;
         pane.add(room, constraints);
         rooms.add( room );
         for(int i = 0; i < Math.random() * 10 + 1; i++)
@@ -83,7 +71,6 @@ public class Level extends JFrame implements KeyListener
         generateRoom(newRoom, true, 1);
         user = new User(newRoom, new Point(8, newRoom.getMap().getLayout()[0].length - 1));
         user.start();
-        roomNum = 1;
         pack();
         setMinimumSize(getSize());
         setSize(getSize().width+30, getSize().height+30);
@@ -111,12 +98,6 @@ public class Level extends JFrame implements KeyListener
         return userLevelScore;
     }
     
-    public int getRoomNum()
-    {
-        return roomNum;
-    }
-    
-
     @Override
     public void keyTyped( KeyEvent e )
     {
@@ -149,7 +130,6 @@ public class Level extends JFrame implements KeyListener
                 user.faceLeft();
                 break;
             case KeyEvent.VK_Q:
-                //user.setAttacking( true );
                 break;
             case KeyEvent.VK_O:
                 Enemy ene = new Enemy(rooms.get( 0 ), new Point(1,1));

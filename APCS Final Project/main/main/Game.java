@@ -1,15 +1,9 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-
 import gui.Level;
-import screens.Screen;
 import screens.MenuScreen;
 import screens.EndScreen;
 
@@ -23,26 +17,9 @@ public class Game extends Thread
     
     public Game()
     {
-//        SwingUtilities.invokeLater( new Runnable() {
-//
-//            @Override
-//            public void run()
-//            {
-//                
-//                
-//                //TODO: This will set visibility, etc. Will make changes to Game, Screen, MenuScreen classes
-//            }
-//            
-//        });
-        //lvl = new Level("gui");
         menu = new MenuScreen();
         menu.setVisible( true );
-        scores = new ArrayList<Long>(4);
-        
-        //menu.setVisible( false );
-        //lvl.setVisible( true );
-        
-        
+        scores = new ArrayList<Long>(5);
     }
     
     public void endGame()

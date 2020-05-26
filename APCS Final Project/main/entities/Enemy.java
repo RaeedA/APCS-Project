@@ -4,7 +4,6 @@ import java.awt.Point;
 
 import gui.Images;
 import gui.Room;
-import main.Launcher;
 
 public class Enemy extends GameCharacter
 {

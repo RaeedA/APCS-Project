@@ -20,7 +20,6 @@ public class EndScreen extends Screen
     private int yDifference;
     private long recentScore;
     private boolean isNewestRecord;
-    private int numRooms;
     public EndScreen()
     {
         super();
