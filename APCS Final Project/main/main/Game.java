@@ -33,7 +33,7 @@ public class Game extends Thread
 //            }
 //            
 //        });
-        lvl = new Level("gui");
+        //lvl = new Level("gui");
         menu = new MenuScreen();
         
         menu.setVisible( true );
@@ -55,6 +55,7 @@ public class Game extends Thread
     
     public void startGame()
     {
+        lvl = new Level("Dungeon Crawler");
         lvl.setVisible( true );
         lvl.startGame();
     }

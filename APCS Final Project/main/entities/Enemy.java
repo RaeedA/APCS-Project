@@ -93,7 +93,6 @@ public class Enemy extends GameCharacter
     @Override
     protected void successKill(GameCharacter other)
     {
-        room.stopEntities();
         return;
     }
 

@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import entities.Enemy;
 import entities.Entity;
 import entities.User;
+import main.Launcher;
 
 public class Level extends JFrame implements KeyListener
 {    
@@ -43,7 +44,6 @@ public class Level extends JFrame implements KeyListener
         pane.setLayout(new GridBagLayout());
         constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.BOTH;
-        roomNum = 1;
         /*c.gridx = 1;
         c.gridy = 0;
         
@@ -53,16 +53,15 @@ public class Level extends JFrame implements KeyListener
 
     }
     
-    public Room generateRoom(Room room, int roomNum)
+    public Room generateRoom(Room room, boolean isFirst, int roomNum)
     {
-        if(roomNum > 1)
+        if(!isFirst)
         {
-            rooms.get( roomNum - 2 ).clearEnemies();
-            pane.remove( rooms.get( roomNum - 2 ) );
-            rooms.remove( roomNum - 2 );
+            closeRoom(rooms.get( 0 ));
         }
         constraints.gridx = 0;
         constraints.gridy = 1;
+        room.setRoomNum( roomNum );
         pane.add(room, constraints);
         rooms.add( room );
         for(int i = 0; i < Math.random() * 10 + 1; i++)
@@ -72,6 +71,7 @@ public class Level extends JFrame implements KeyListener
         constraints.gridx = 0;
         constraints.gridy = 0;
         Top top = new Top(room.getLength());
+        top.setRoomNum( roomNum );
         pane.add( top, constraints );
         return room;
     }
@@ -79,12 +79,30 @@ public class Level extends JFrame implements KeyListener
     public void startGame()
     {
         Room newRoom = new Room(15);
-        generateRoom(newRoom, 1);
+        generateRoom(newRoom, true, 1);
         user = new User(newRoom, new Point(8, newRoom.getMap().getLayout()[0].length - 1));
         user.start();
+        roomNum = 1;
         pack();
         setMinimumSize(getSize());
         setSize(getSize().width+30, getSize().height+30);
+    }
+    
+    public void endGame( long userScore )
+    {
+        for(int i = rooms.size() - 1; i > 0; i--)
+        {
+            closeRoom(rooms.get( i ));
+        }
+        userLevelScore = userScore;
+        Launcher.getGame().endGame();
+    }
+    
+    public void closeRoom( Room room )
+    {
+        room.clearEnemies();
+        pane.remove( room );
+        rooms.remove( room );
     }
     
     public long getUserLevelScore()
@@ -92,10 +110,6 @@ public class Level extends JFrame implements KeyListener
         return userLevelScore;
     }
     
-    public void setUserLevelScore( long userScore )
-    {
-        userLevelScore = userScore;
-    }
 
     @Override
     public void keyTyped( KeyEvent e )

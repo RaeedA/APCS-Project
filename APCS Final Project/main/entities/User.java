@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import gui.Images;
 import gui.Room;
+import gui.Level;
 import main.Launcher;
 
 public class User extends GameCharacter
@@ -46,7 +47,8 @@ public class User extends GameCharacter
         {
             if(dy < 0 && (getLocation().equals( new Point(8, 0) ) || getLocation().equals( new Point(9, 0) )))
             {
-                Room nextRoom = Launcher.getGame().getLevel().generateRoom( new Room(15), 2 );
+                Room nextRoom = Launcher.getGame().getLevel().generateRoom( new Room(15), false, room.getRoomNum() + 1 );
+                room.removeEntity(this);
                 this.setRoom( nextRoom );
                 setLocation(new Point(getLocation().x, nextRoom.getMap().getLayout()[0].length-1));
                 nextRoom.addEntity(this);
@@ -64,9 +66,10 @@ public class User extends GameCharacter
     
     public void die()
     {
-        Launcher.getGame().getLevel().setUserLevelScore( score );
         super.die();
-        Launcher.getGame().endGame();
+        Level lvl = Launcher.getGame().getLevel();
+        lvl.endGame(score);
+        
     }
     
     

@@ -105,6 +105,10 @@ public abstract class GameCharacter extends Entity
     protected abstract boolean isAgainst(Entity other);
     protected abstract void successKill(GameCharacter other);
 
+    public void setAliveStatus( boolean isAlive )
+    {
+        this.isAlive = isAlive;
+    }
     protected void die()
     {
         room.kill(this);

@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
@@ -11,6 +13,7 @@ public class Top extends JPanel
 {
     private ImageIcon full;
     private ImageIcon empty;
+    private int roomNum;
     
     public Top(int size)
     {
@@ -73,5 +76,10 @@ public class Top extends JPanel
     public ImageIcon getFull()
     {
         return full;
+    }
+    
+    public void setRoomNum( int roomNum )
+    {
+        this.roomNum = roomNum;
     }
 }

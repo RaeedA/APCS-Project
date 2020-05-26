@@ -20,6 +20,7 @@ public class Room extends JPanel
     private Tile[][] layout;
     private ArrayList<Entity> entities;
     private Map map;
+    private int roomNum;
     
     public Room(int size)
     {
@@ -110,13 +111,22 @@ public class Room extends JPanel
         return null;
     }
     
-    public void kill(Entity e)
+    public void kill(Entity entity)
     {
-        entities.remove( e );
-        layout[e.getLocation().x][e.getLocation().y].setPassable( true );
-        layout[e.getLocation().x][e.getLocation().y].setType( "floor" );
-        layout[e.getLocation().x][e.getLocation().y].getLabel().setIcon( e.getCurrent() );
+        if(entity instanceof GameCharacter)
+        {
+            ( (GameCharacter)entity ).setAliveStatus( false );
+        }
+        removeEntity( entity );
         
+    }
+    
+    public void removeEntity( Entity entity )
+    {
+        entities.remove( entity );
+        layout[entity.getLocation().x][entity.getLocation().y].setPassable( true );
+        layout[entity.getLocation().x][entity.getLocation().y].setType( "floor" );
+        layout[entity.getLocation().x][entity.getLocation().y].getLabel().setIcon( entity.getCurrent() );
     }
     
     public void redraw( Entity entity, ImageIcon img )
@@ -176,8 +186,14 @@ public class Room extends JPanel
         return null;
     }
     
-    public void stopEntities()
+    public int getRoomNum()
     {
+        return roomNum;
+    }
+    
+    public void setRoomNum( int roomNum )
+    {
+        this.roomNum = roomNum;
     }
     
     public int getLength()
