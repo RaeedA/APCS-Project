@@ -48,9 +48,11 @@ public class Enemy extends GameCharacter
         randDecision = (int) (Math.random() * 250);
     }
     
-    public long getScore()
+    public long takeScore()
     {
-        return score;
+        long scoreTaken = score;
+        score = 0;
+        return scoreTaken;
     }
     public void moveToPlayer()
     {

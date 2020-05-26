@@ -50,8 +50,7 @@ public class MenuScreen extends Screen
             public void actionPerformed( ActionEvent e )
             {
                 setVisible(false);
-                Launcher.getGame().getLevel().setVisible( true );
-                Launcher.getGame().getLevel().startGame();
+                Launcher.getGame().startGame();
             }
             
         }));

@@ -116,7 +116,11 @@ public class User extends GameCharacter
         {
             levelUp();
         }
-        addToScore(other.getScore());
+        if(other instanceof Enemy)
+        {
+            addToScore(((Enemy)other).takeScore());
+        }
+        
     }
 
     @Override

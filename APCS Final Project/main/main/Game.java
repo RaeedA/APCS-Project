@@ -53,6 +53,12 @@ public class Game extends Thread
         end.setVisible( true );
     }
     
+    public void startGame()
+    {
+        lvl.setVisible( true );
+        lvl.startGame();
+    }
+    
     public MenuScreen getMenu()
     {
         return menu;

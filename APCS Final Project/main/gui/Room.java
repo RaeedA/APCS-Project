@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import entities.Enemy;
 import entities.Entity;
 import entities.GameCharacter;
 import entities.User;
@@ -145,6 +146,20 @@ public class Room extends JPanel
             }
         }
         return null;
+    }
+    
+    public void clearEnemies()
+    {
+        int size = entities.size();
+        Entity entity;
+        for(int i = size - 1; i > 0; i--)
+        {
+            entity = entities.get( i );
+            if(entity instanceof Enemy)
+            {
+                kill(entity);
+            }
+        }
     }
     
     public Entity entityAt( Point location )

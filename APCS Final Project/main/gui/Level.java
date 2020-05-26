@@ -57,6 +57,7 @@ public class Level extends JFrame implements KeyListener
     {
         if(roomNum > 1)
         {
+            rooms.get( roomNum - 2 ).clearEnemies();
             pane.remove( rooms.get( roomNum - 2 ) );
             rooms.remove( roomNum - 2 );
         }
