@@ -2,7 +2,6 @@ package screens;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ import javax.swing.JLabel;
 import gui.Images;
 import main.Launcher;
 
+@SuppressWarnings("serial")
 public class EndScreen extends Screen
 {
     private ArrayList<Long> scoreBoard;
@@ -24,16 +24,38 @@ public class EndScreen extends Screen
     {
         super();
 
-        JButton button = new JButton( "Retry", Images.getButton() );
-        button.setBounds( 340, 400, 120, 50 );
-        button.setFont( Images.loadFont( 20 ) );
-        button.setHorizontalTextPosition(JButton.CENTER);
-        button.setVerticalTextPosition( JButton.CENTER );
+        JButton button = makeButton("Retry", Images.getButton(), 400, 325, 120, 50, 20);
         this.add( button );
-        ImageIcon background = new ImageIcon(
-            this.getClass().getResource( "DungeonBackground2.gif" ) );
-        background.setImage( background.getImage()
-            .getScaledInstance( 800, 600, Image.SCALE_DEFAULT ) );
+        this.setBackgroundImg( "DungeonBackground2.gif", 800, 600 );
+        this.getContentPane().add( ( makeLabel(background) ) );
+        button.addActionListener((new ActionListener()
+        {
+
+            @Override
+            public void actionPerformed( ActionEvent e )
+            {
+                setVisible(false);
+                Launcher.getGame().getMenu().setVisible( true );
+            }
+            
+        }));
+        this.pack();
+    }
+    
+    public void setRecentScore( long recentScore)
+    {
+        this.recentScore = recentScore;
+    }
+    
+    public void recentIsNewRecord( boolean isNewRecord )
+    {
+        isNewestRecord = isNewRecord;
+    }
+    
+
+    @Override
+    protected JLabel makeLabel( ImageIcon backgroundImg )
+    {
         scoreBoard = Launcher.getGame().getScores();
         JLabel label = new JLabel(background) 
         {
@@ -65,28 +87,8 @@ public class EndScreen extends Screen
                 }
             }
         };
-        this.getContentPane().add( ( label ) );
-        button.addActionListener((new ActionListener()
-        {
-
-            @Override
-            public void actionPerformed( ActionEvent e )
-            {
-                setVisible(false);
-                Launcher.getGame().getMenu().setVisible( true );
-            }
-            
-        }));
-        this.pack();
+        return label;
     }
     
-    public void setRecentScore( long recentScore)
-    {
-        this.recentScore = recentScore;
-    }
     
-    public void recentIsNewRecord( boolean isNewRecord )
-    {
-        isNewestRecord = isNewRecord;
-    }
 }
