@@ -20,6 +20,7 @@ public class EndScreen extends Screen
     private int yDifference;
     private long recentScore;
     private boolean isNewestRecord;
+    private int numRooms;
     public EndScreen()
     {
         super();
@@ -58,10 +59,10 @@ public class EndScreen extends Screen
                     }
                     yDifference += 35;
                 }
-                Images.drawText( g, "Your Score: " + recentScore, 400, 525, true, Color.YELLOW, Images.loadFont( 45 ) );
+                Images.drawText( g, "Your Score: " + recentScore, 400, 525, true, Color.YELLOW, Images.loadFont( 40 ) );
                 if(isNewestRecord)
                 {
-                    Images.drawText( g, "Your Newest Record!", 400, 570, true, Color.YELLOW, Images.loadFont( 25 ) );
+                    Images.drawText( g, "Your Newest Record!", 400, 570, true, Color.YELLOW, Images.loadFont( 20 ) );
                 }
             }
         };

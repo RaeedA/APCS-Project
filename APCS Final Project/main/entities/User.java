@@ -29,9 +29,10 @@ public class User extends GameCharacter
         moving = false;
         
         score = 0;
-        attackDamage = 10;
-        health = 500;
-        maxHealth = 500;
+        level = 1;
+        attackDamage = 25;
+        health = 750;
+        maxHealth = 750;
         room.addEntity( this );
     }
     
@@ -47,6 +48,7 @@ public class User extends GameCharacter
         {
             if(dy < 0 && (getLocation().equals( new Point(8, 0) ) || getLocation().equals( new Point(9, 0) )))
             {
+                addToScore(10 * level * room.getRoomNum());
                 Room nextRoom = Launcher.getGame().getLevel().generateRoom( new Room(15), false, room.getRoomNum() + 1 );
                 room.removeEntity(this);
                 this.setRoom( nextRoom );
@@ -118,6 +120,7 @@ public class User extends GameCharacter
         if(killCount > level * 3)
         {
             levelUp();
+            killCount = 0;
         }
         if(other instanceof Enemy)
         {

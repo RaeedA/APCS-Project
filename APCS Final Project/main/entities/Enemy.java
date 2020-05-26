@@ -14,9 +14,9 @@ public class Enemy extends GameCharacter
     {
         super(room, p);
         type = "enemy";
-        health = 100;
-        difficulty = 30;
-        attackDamage = 25;
+        difficulty = 10 * room.getRoomNum();
+        attackDamage = 5 * difficulty;
+        health = 15 * difficulty;
         
         images = Images.getSkeleton();
         image = images[0];

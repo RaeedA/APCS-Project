@@ -19,8 +19,6 @@ public class Game extends Thread
     private MenuScreen menu;
     private EndScreen end;
     private ArrayList<Long> scores;
-    private long recentScore;
-    private boolean isNewestRecord;
     
     
     public Game()
@@ -49,7 +47,8 @@ public class Game extends Thread
     
     public void endGame()
     {
-        recentScore = lvl.getUserLevelScore();
+        long recentScore = lvl.getUserLevelScore();
+        boolean isNewestRecord;
         lvl.setVisible( false );
         if(scores.size() > 0 && recentScore > scores.get( 0 ))
         {

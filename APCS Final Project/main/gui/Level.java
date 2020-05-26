@@ -62,6 +62,7 @@ public class Level extends JFrame implements KeyListener
         constraints.gridx = 0;
         constraints.gridy = 1;
         room.setRoomNum( roomNum );
+        this.roomNum = roomNum;
         pane.add(room, constraints);
         rooms.add( room );
         for(int i = 0; i < Math.random() * 10 + 1; i++)
@@ -108,6 +109,11 @@ public class Level extends JFrame implements KeyListener
     public long getUserLevelScore()
     {
         return userLevelScore;
+    }
+    
+    public int getRoomNum()
+    {
+        return roomNum;
     }
     
 
