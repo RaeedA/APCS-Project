@@ -28,220 +28,68 @@ import javax.swing.ImageIcon;
  */
 public class Images
 {
-    private static BufferedImage tileSet = loadImg(
-        "main/images/Dungeon_Tileset.png" );
 
-    private static ImageIcon floor1 = resize( crop( tileSet, 96, 0, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon floor2 = resize( crop( tileSet, 112, 0, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon floor3 = resize( crop( tileSet, 128, 0, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon floor4 = resize( crop( tileSet, 144, 0, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon floor5 = resize( crop( tileSet, 96, 16, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon floor6 = resize( crop( tileSet, 112, 16, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon floor7 = resize( crop( tileSet, 128, 16, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon floor8 = resize( crop( tileSet, 144, 16, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon rightcorner = resize(
-        crop( tileSet, 80, 64, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon leftcorner = resize(
-        crop( tileSet, 0, 64, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon bottom1 = resize( crop( tileSet, 16, 64, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon bottom2 = resize( crop( tileSet, 32, 64, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon bottom3 = resize( crop( tileSet, 48, 64, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon bottom4 = resize( crop( tileSet, 64, 64, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon top1 = resize( crop( tileSet, 16, 0, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon top2 = resize( crop( tileSet, 32, 0, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon top3 = resize( crop( tileSet, 48, 0, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon top4 = resize( crop( tileSet, 64, 0, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon left1 = resize( crop( tileSet, 0, 0, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon left2 = resize( crop( tileSet, 0, 16, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon left3 = resize( crop( tileSet, 0, 32, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon left4 = resize( crop( tileSet, 0, 48, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon right1 = resize( crop( tileSet, 80, 0, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon right2 = resize( crop( tileSet, 80, 16, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon right3 = resize( crop( tileSet, 80, 32, 16, 16 ),
-        32,
-        32 );
-
-    private static ImageIcon right4 = resize( crop( tileSet, 80, 48, 16, 16 ),
-        32,
-        32 );
-
-    private static BufferedImage dark = crop( tileSet, 128, 112, 16, 16 );
-
-    private static ImageIcon torch1 = resize(
-        loadImg( "main/images/torch_1.png" ),
-        32,
-        32 );
-
-    private static ImageIcon torch2 = resize(
-        loadImg( "main/images/torch_2.png" ),
-        32,
-        32 );
-
-    private static ImageIcon torch3 = resize(
-        loadImg( "main/images/torch_3.png" ),
-        32,
-        32 );
-
-    private static ImageIcon torch4 = resize(
-        loadImg( "main/images/torch_4.png" ),
-        32,
-        32 );
-
-    private static ImageIcon warrior1 = resize(
-        loadImg( "main/images/warriors/warrior_1.png" ),
-        32,
-        32 );
-
-    private static ImageIcon warrior2 = resize(
-        loadImg( "main/images/warriors/warrior_2.png" ),
-        32,
-        32 );
-
-    private static ImageIcon warrior3 = resize(
-        loadImg( "main/images/warriors/warrior_3.png" ),
-        32,
-        32 );
-
-    private static ImageIcon warrior4 = resize(
-        loadImg( "main/images/warriors/warrior_4.png" ),
-        32,
-        32 );
-
-    private static ImageIcon awarrior1 = resize(
-        loadImg( "main/images/warriors/awarrior_1.png" ),
-        32,
-        32 );
-
-    private static ImageIcon awarrior2 = resize(
-        loadImg( "main/images/warriors/awarrior_2.png" ),
-        32,
-        32 );
-
-    private static ImageIcon awarrior3 = resize(
-        loadImg( "main/images/warriors/awarrior_3.png" ),
-        32,
-        32 );
-
-    private static ImageIcon awarrior4 = resize(
-        loadImg( "main/images/warriors/awarrior_4.png" ),
-        32,
-        32 );
-
-    /*
-     * private static ImageIcon skeleton1 =
-     * resize(loadImg("main/images/skeletons/skeleton_1.png"), 32, 32); private
-     * static ImageIcon skeleton2 =
-     * resize(loadImg("main/images/skeletons/skeleton_2.png"), 32, 32); private
-     * static ImageIcon skeleton3 =
-     * resize(loadImg("main/images/skeletons/skeleton_3.png"), 32, 32); private
-     * static ImageIcon skeleton4 =
-     * resize(loadImg("main/images/skeletons/skeleton_4.png"), 32, 32);
-     */
-    private static ImageIcon askeleton1 = resize(
-        loadImg( "main/images/skeletons/askeleton_1.png" ),
-        32,
-        32 );
-
-    private static ImageIcon askeleton2 = resize(
-        loadImg( "main/images/skeletons/askeleton_2.png" ),
-        32,
-        32 );
-
-    private static ImageIcon askeleton3 = resize(
-        loadImg( "main/images/skeletons/askeleton_3.png" ),
-        32,
-        32 );
-
-    private static ImageIcon askeleton4 = resize(
-        loadImg( "main/images/skeletons/askeleton_4.png" ),
-        32,
-        32 );
-
-    private static BufferedImage healthbars = loadImg(
-        "main/images/Healthbars.png" );
-
-    private static BufferedImage full = crop( healthbars, 33, 37, 80, 9 );
-
-    private static BufferedImage empty = crop( healthbars, 33, 51, 80, 9 );
-
-    private static ImageIcon button = resize(
-        crop( loadImg( "main/images/buttons.png" ), 0, 16, 34, 16 ),
-        134,
-        50 );
-
-
+    
+    private static BufferedImage tileSet = loadImg("main/images/Dungeon_Tileset.png");
+    
+    private static ImageIcon floor1 = resize(crop(tileSet, 96, 0, 16, 16), 32, 32);
+    private static ImageIcon floor2 = resize(crop(tileSet, 112, 0, 16, 16 ), 32, 32);
+    private static ImageIcon floor3 = resize(crop(tileSet, 128, 0, 16, 16 ), 32, 32);
+    private static ImageIcon floor4 = resize(crop(tileSet, 144, 0, 16, 16 ), 32, 32);
+    private static ImageIcon floor5 = resize(crop(tileSet, 96, 16, 16, 16 ), 32, 32);
+    private static ImageIcon floor6 = resize(crop(tileSet, 112, 16, 16, 16 ), 32, 32);
+    private static ImageIcon floor7 = resize(crop(tileSet, 128, 16, 16, 16 ), 32, 32);
+    private static ImageIcon floor8 = resize(crop(tileSet, 144, 16, 16, 16 ), 32, 32);
+    private static ImageIcon rightcorner = resize(crop(tileSet, 80, 64, 16, 16 ), 32, 32);
+    private static ImageIcon leftcorner = resize(crop(tileSet, 0, 64, 16, 16 ), 32, 32);
+    private static ImageIcon bottom1 = resize(crop(tileSet, 16, 64, 16, 16 ), 32, 32);
+    private static ImageIcon bottom2 = resize(crop(tileSet, 32, 64, 16, 16 ), 32, 32);
+    private static ImageIcon bottom3 = resize(crop(tileSet, 48, 64, 16, 16 ), 32, 32);
+    private static ImageIcon bottom4 = resize(crop(tileSet, 64, 64, 16, 16 ), 32, 32);
+    private static ImageIcon top1 = resize(crop(tileSet, 16, 0, 16, 16 ), 32, 32);
+    private static ImageIcon top2 = resize(crop(tileSet, 32, 0, 16, 16 ), 32, 32);
+    private static ImageIcon top3 = resize(crop(tileSet, 48, 0, 16, 16 ), 32, 32);
+    private static ImageIcon top4 = resize(crop(tileSet, 64, 0, 16, 16 ), 32, 32);
+    private static ImageIcon left1 = resize(crop(tileSet, 0, 0, 16, 16 ), 32, 32);
+    private static ImageIcon left2 = resize(crop(tileSet, 0, 16, 16, 16 ), 32, 32);
+    private static ImageIcon left3 = resize(crop(tileSet, 0, 32, 16, 16 ), 32, 32);
+    private static ImageIcon left4 = resize(crop(tileSet, 0, 48, 16, 16 ), 32, 32);
+    private static ImageIcon right1 = resize(crop(tileSet, 80, 0, 16, 16 ), 32, 32);
+    private static ImageIcon right2 = resize(crop(tileSet, 80, 16, 16, 16 ), 32, 32);
+    private static ImageIcon right3 = resize(crop(tileSet, 80, 32, 16, 16 ), 32, 32);
+    private static ImageIcon right4 = resize(crop(tileSet, 80, 48, 16, 16 ), 32, 32);
+    private static BufferedImage white = crop(tileSet, 143, 111, 1, 1 );
+    private static BufferedImage dark = crop(tileSet, 128, 112, 16, 16 );
+    private static ImageIcon torch1 = resize(loadImg("main/images/torch_1.png"), 32, 32);
+    private static ImageIcon torch2 = resize(loadImg("main/images/torch_2.png"), 32, 32);
+    private static ImageIcon torch3 = resize(loadImg("main/images/torch_3.png"), 32, 32);
+    private static ImageIcon torch4 = resize(loadImg("main/images/torch_4.png"), 32, 32);
+    private static ImageIcon warrior1 = resize(loadImg("main/images/warriors/warrior_1.png"), 32, 32);
+    private static ImageIcon warrior2 = resize(loadImg("main/images/warriors/warrior_2.png"), 32, 32);
+    private static ImageIcon warrior3 = resize(loadImg("main/images/warriors/warrior_3.png"), 32, 32);
+    private static ImageIcon warrior4 = resize(loadImg("main/images/warriors/warrior_4.png"), 32, 32);
+    private static ImageIcon awarrior1 = resize(loadImg("main/images/warriors/awarrior_1.png"), 32, 32);
+    private static ImageIcon awarrior2 = resize(loadImg("main/images/warriors/awarrior_2.png"), 32, 32);
+    private static ImageIcon awarrior3 = resize(loadImg("main/images/warriors/awarrior_3.png"), 32, 32);
+    private static ImageIcon awarrior4 = resize(loadImg("main/images/warriors/awarrior_4.png"), 32, 32);
+    /*private static ImageIcon skeleton1 = resize(loadImg("main/images/skeletons/skeleton_1.png"), 32, 32);
+    private static ImageIcon skeleton2 = resize(loadImg("main/images/skeletons/skeleton_2.png"), 32, 32);
+    private static ImageIcon skeleton3 = resize(loadImg("main/images/skeletons/skeleton_3.png"), 32, 32);
+    private static ImageIcon skeleton4 = resize(loadImg("main/images/skeletons/skeleton_4.png"), 32, 32);*/
+    private static ImageIcon askeleton1 = resize(loadImg("main/images/skeletons/askeleton_1.png"), 32, 32);
+    private static ImageIcon askeleton2 = resize(loadImg("main/images/skeletons/askeleton_2.png"), 32, 32);
+    private static ImageIcon askeleton3 = resize(loadImg("main/images/skeletons/askeleton_3.png"), 32, 32);
+    private static ImageIcon askeleton4 = resize(loadImg("main/images/skeletons/askeleton_4.png"), 32, 32);
+    private static BufferedImage healthbars = loadImg("main/images/Healthbars.png");
+    private static BufferedImage full = crop(healthbars, 33, 37, 80, 9);
+    private static BufferedImage empty = crop(healthbars, 33, 51, 80, 9);
+    private static ImageIcon button = resize(crop(loadImg("main/images/buttons.png"), 0, 16, 34, 16), 134, 50);
+    private static BufferedImage scoreFrame = loadImg("main/images/ScoreFrame.png");
+    
+    public Images()
+    { 
+    }
+    
     /**
      * Accessor method that gets and returns the floor images
      * 
@@ -396,6 +244,16 @@ public class Images
     }
 
 
+
+    public static ImageIcon getWhite(int length, int height)
+    {
+        return resize(white, length*32, height*32);
+    }
+    public static ImageIcon getScoreFrame(int size)
+    {
+        return resize(scoreFrame, size*32, size*32);
+    }
+    
     /**
      * Combines and returns two images, the bottom image and the top image
      * 
@@ -450,8 +308,7 @@ public class Images
         g.drawImage( bottom.getImage(), 0, 0, null );
         g.drawImage( top.getImage(), offx, offy, null );
         g.dispose();
-        System.out.println( "st" );
-        return new ImageIcon( finalImage );
+        return new ImageIcon(finalImage);
     }
 
 
@@ -499,6 +356,22 @@ public class Images
         int height )
     {
         return img.getSubimage( x, y, width, height );
+    }
+    
+    public static BufferedImage toBufferedImage(Image img)
+    {
+        if (img instanceof BufferedImage)
+        {
+            return (BufferedImage) img;
+        }
+
+        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+
+        return bimage;
     }
 
 

@@ -105,7 +105,8 @@ public class Level extends JFrame implements KeyListener
         }
         constraints.gridx = 0;
         constraints.gridy = 0;
-        top = new Top( room.getLength() );
+        top = new Top(room.getLength());
+        user.setTop(top);
         top.setRoomNum( roomNum );
         pane.add( top, constraints );
         return room;
@@ -117,14 +118,14 @@ public class Level extends JFrame implements KeyListener
      */
     public void startGame()
     {
-        Room newRoom = new Room( 15 );
-        generateRoom( newRoom, true, 1 );
-        user = new User( newRoom,
-            new Point( 8, newRoom.getMap().getLayout()[0].length - 1 ) );
+        Room newRoom = new Room(15);
+        user = new User(newRoom, new Point(8, newRoom.getMap().getLayout()[0].length - 1));
         user.start();
+        generateRoom(newRoom, true, 1);
         pack();
-        setMinimumSize( getSize() );
-        setSize( getSize().width + 30, getSize().height + 30 );
+        setMinimumSize(getSize());
+        setSize(getSize().width+30, getSize().height+30);
+        top.update(user);
     }
 
 
