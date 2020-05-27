@@ -13,12 +13,12 @@ public class Enemy extends GameCharacter
     {
         super(room, p);
         type = "enemy";
-        //difficulty = 10 * room.getRoomNum();
-        difficulty = 10;
+        difficulty = 10 * room.getRoomNum();
         attackDamage = 5 * difficulty;
         health = 15 * difficulty;
         
         images = Images.getSkeleton();
+        attackImages = images;
         image = images[0];
         score = 10 * difficulty;
         randDecision = (int) (Math.random() * 100);

@@ -109,6 +109,8 @@ public class Top extends JPanel
         back = Images.combine( back, bar[0], 16+offset, 50 );
         BufferedImage img = Images.toBufferedImage(back.getImage());
         Graphics g = img.getGraphics();
+        g.setColor( Color.white );
+        g.fillRect( 20, 15, 100 , 30  );
         Images.drawText( g, myHealth.getHealth(), 25, 45, false, Color.black, Images.loadFont( 15 ) );
         g.dispose();
         back = new ImageIcon(img);

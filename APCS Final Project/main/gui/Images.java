@@ -44,7 +44,6 @@ public class Images
     private static ImageIcon right2 = resize(crop(tileSet, 80, 16, 16, 16 ), 32, 32);
     private static ImageIcon right3 = resize(crop(tileSet, 80, 32, 16, 16 ), 32, 32);
     private static ImageIcon right4 = resize(crop(tileSet, 80, 48, 16, 16 ), 32, 32);
-    private static BufferedImage white = crop(tileSet, 143, 111, 1, 1 );
     private static BufferedImage dark = crop(tileSet, 128, 112, 16, 16 );
     private static ImageIcon torch1 = resize(loadImg("main/images/torch_1.png"), 32, 32);
     private static ImageIcon torch2 = resize(loadImg("main/images/torch_2.png"), 32, 32);
@@ -130,7 +129,11 @@ public class Images
     }
     public static ImageIcon getWhite(int length, int height)
     {
-        return resize(white, length*32, height*32);
+        BufferedImage img = new BufferedImage(length*32, height*32, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = img.createGraphics();
+        g.setColor( Color.white );
+        g.fillRect( 0, 0, length*32, height*32 );
+        return new ImageIcon(img);
     }
     public static ImageIcon getScoreFrame(int size)
     {
