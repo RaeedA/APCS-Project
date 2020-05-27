@@ -39,7 +39,7 @@ public class Enemy extends GameCharacter
         difficulty = 10 * room.getRoomNum();
         attackDamage = 5 * difficulty;
         health = 15 * difficulty;
-
+        attacking = true;
         images = Images.getSkeleton();
         attackImages = images;
         image = images[0];

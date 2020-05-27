@@ -6,12 +6,25 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
+/**
+ *  Represents character scoreboard
+ *
+ *  @author  Raeed Azom & Jeffery Lee
+ *  @version May 26, 2020
+ *  @author  Period: 1
+ *  @author  Assignment: APCS Final Project
+ *
+ *  @author  Sources: none
+ */
 public class ScoreBoard
 {
     private final int mySize;
     private final ImageIcon myImage;
     private long score;
     
+    /**
+     * @param size size of board
+     */
     public ScoreBoard(int size)
     {
         mySize = size;
@@ -22,11 +35,20 @@ public class ScoreBoard
         myImage = new ImageIcon(img);
     }
     
+    /**
+     * getter method for image of board
+     * @return board image
+     */
     public ImageIcon getImg()
     {
         return myImage;
     }
     
+    /**
+     * updates scoreboard
+     * @param newScore new score of board
+     * @return new board image
+     */
     public ImageIcon update(long newScore)
     {
         score = newScore;

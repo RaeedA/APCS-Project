@@ -43,6 +43,8 @@ public abstract class GameCharacter extends Entity
 
     protected Directions facing;
 
+    protected boolean attacking;
+
 
     /**
      * Constructor: Instantiates the room object and location. Additionally sets
@@ -137,14 +139,11 @@ public abstract class GameCharacter extends Entity
         int offy = 0;
         switch ( facing )
         {
-            case up:
-                frontEnemy = room.getUpEntity( location );
-                offy = 10;
-                break;
-            case down:
-                frontEnemy = room.getDownEntity( location );
-                offy = -10;
-                break;
+            /*
+             * case up: frontEnemy = room.getUpEntity( location ); offy = 10;
+             * break; case down: frontEnemy = room.getDownEntity( location );
+             * offy = -10; break;
+             */
             case right:
                 frontEnemy = room.getRightEntity( location );
                 offx = 10;
@@ -164,6 +163,7 @@ public abstract class GameCharacter extends Entity
             {
                 iconNum = 0;
             }
+            // System.out.println("wokring..." + facing);
             room.redraw( this, images[iconNum], offx, offy );
             enemy.setHealth( enemy.getHealth() - attackDamage );
             if ( enemy.health <= 0 )
@@ -226,7 +226,18 @@ public abstract class GameCharacter extends Entity
         {
             iconNum = 0;
         }
-        room.redraw( this, images[iconNum] );
+        if ( attacking )
+        {
+            room.redraw( this, attackImages[iconNum] );
+            if ( this instanceof User )
+            {
+                System.out.println( "attacking" );
+            }
+        }
+        else
+        {
+            room.redraw( this, images[iconNum] );
+        }
     }
 
 

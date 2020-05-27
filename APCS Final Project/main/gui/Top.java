@@ -1,9 +1,7 @@
 package gui;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.image.BufferedImage;
@@ -14,19 +12,36 @@ import javax.swing.JPanel;
 
 import entities.User;
 
+/**
+ *  Represents top menu bar of game
+ *
+ *  @author  Raeed Azom & Jeffery Lee
+ *  @version May 26, 2020
+ *  @author  Period: 1
+ *  @author  Assignment: APCS Final Project
+ *
+ *  @author  Sources: none
+ */
 @SuppressWarnings("serial")
 public class Top extends JPanel
 {
-    private int roomNum;
+    //private int roomNum;
     private HealthBar myHealth;
     private JLabel[] backs;
     private ScoreBoard myScore;
     
+    /**
+     * @param size size of top region
+     */
     public Top(int size)
     {
         setup(size);
     }
     
+    /**
+     * sets up top region of the map
+     * @param size
+     */
     public void setup(int size)
     {
         ImageIcon back1;
@@ -86,6 +101,10 @@ public class Top extends JPanel
         add(backthree,c);
     }
     
+    /**
+     * updates top area using a user
+     * @param myUser user for this top area
+     */
     public void update(User myUser)
     {
         if (myUser.getMaxHealth() == myHealth.getMaxHealth())
@@ -117,7 +136,7 @@ public class Top extends JPanel
         backs[0].setIcon( back );
     }
     
-    public void updateHealth(int newHealth)
+    private void updateHealth(int newHealth)
     {
         if(myHealth.update( newHealth ))
         {
@@ -125,13 +144,13 @@ public class Top extends JPanel
         }
     }
     
-    public void updateScore(long newScore)
+    private void updateScore(long newScore)
     {
         backs[1].setIcon( myScore.update(newScore) );
     }
     
-    public void setRoomNum( int roomNum )
+    /*public void setRoomNum( int roomNum )
     {
         this.roomNum = roomNum;
-    }
+    }*/
 }

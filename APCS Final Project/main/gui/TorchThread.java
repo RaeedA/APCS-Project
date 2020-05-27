@@ -2,10 +2,24 @@ package gui;
 
 import java.awt.Point;
 
+/**
+ *  thread to manage torches
+ *
+ *  @author  Raeed Azom & Jeffery Lee
+ *  @version May 26, 2020
+ *  @author  Period: 1
+ *  @author  Assignment: APCS Final Project
+ *
+ *  @author  Sources: none
+ */
 public class TorchThread extends Thread
 {
     private Torch[] torches;
     
+    /**
+     * @param layout layout to manage
+     * @param places torch locations
+     */
     public TorchThread(Tile[][] layout, Point[] places)
     {
         torches = new Torch[places.length];
@@ -17,6 +31,9 @@ public class TorchThread extends Thread
         }
     }
 
+    /**
+     * main run method to manage torches
+     */
     @Override
     public void run()
     {
@@ -35,6 +52,9 @@ public class TorchThread extends Thread
         
     }
     
+    /**
+     * updates all torches
+     */
     private void update()
     {        
         for (int i = 0; i < torches.length; i++)

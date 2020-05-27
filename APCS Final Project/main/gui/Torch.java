@@ -3,6 +3,16 @@ package gui;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+/**
+ *  represents a wall torch
+ *
+ *  @author  Raeed Azom & Jeffery Lee
+ *  @version May 26, 2020
+ *  @author  Period: 1
+ *  @author  Assignment: APCS Final Project
+ *
+ *  @author  Sources: none
+ */
 public class Torch
 {
     private ImageIcon[] images;
@@ -10,7 +20,7 @@ public class Torch
     private JLabel label;
     
     /**
-     * 
+     * creates a torch object
      */
     public Torch()
     {
@@ -27,7 +37,7 @@ public class Torch
     }
     
     /**
-     * TODO Write your method description here.
+     * updates this torch
      */
     public void update()
     {
@@ -40,8 +50,8 @@ public class Torch
     }
     
     /**
-     * TODO Write your method description here.
-     * @return
+     * returns label of this torch
+     * @return label of this torch
      */
     public JLabel getLabel()
     {
