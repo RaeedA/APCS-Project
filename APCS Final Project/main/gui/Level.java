@@ -107,7 +107,7 @@ public class Level extends JFrame implements KeyListener
         constraints.gridy = 0;
         top = new Top(room.getLength());
         user.setTop(top);
-        top.setRoomNum( roomNum );
+        //top.setRoomNum( roomNum );
         pane.add( top, constraints );
         return room;
     }
@@ -225,7 +225,7 @@ public class Level extends JFrame implements KeyListener
                 ene.start();
                 break;
             case KeyEvent.VK_X:
-                user.setHealth( 0 );
+                user.setHealth( 1 );
                 break;
             default:
                 break;
