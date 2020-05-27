@@ -105,10 +105,10 @@ public class Level extends JFrame implements KeyListener
         }
         constraints.gridx = 0;
         constraints.gridy = 0;
-        top = new Top(room.getLength());
-        user.setTop(top);
+        //top = new Top(room.getLength());
+        //user.setTop(top);
         //top.setRoomNum( roomNum );
-        pane.add( top, constraints );
+        //pane.add( top, constraints );
         return room;
     }
 
@@ -122,6 +122,9 @@ public class Level extends JFrame implements KeyListener
         user = new User(newRoom, new Point(8, newRoom.getMap().getLayout()[0].length - 1));
         user.start();
         generateRoom(newRoom, true, 1);
+        top = new Top(activeRoom.getLength());
+        user.setTop( top );
+        pane.add( top, constraints );
         pack();
         setMinimumSize(getSize());
         setSize(getSize().width+30, getSize().height+30);
@@ -223,9 +226,6 @@ public class Level extends JFrame implements KeyListener
             case KeyEvent.VK_O:
                 Enemy ene = new Enemy( activeRoom, new Point( 1, 1 ) );
                 ene.start();
-                break;
-            case KeyEvent.VK_X:
-                user.setHealth( 1 );
                 break;
             default:
                 break;

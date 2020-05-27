@@ -62,7 +62,7 @@ public class User extends GameCharacter
 
         score = 0;
         level = 1;
-        attackDamage = 25;
+        attackDamage = 75;
         health = 750;
         maxHealth = 750;
         room.addEntity( this );
@@ -231,7 +231,7 @@ public class User extends GameCharacter
     public void levelUp()
     {
         level++;
-        attackDamage += ( level * 10 );
+        attackDamage += ( level * 25 );
         maxHealth += level * 10;
         health = maxHealth;
     }
