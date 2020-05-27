@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import gui.Images;
 import gui.Room;
+import gui.Top;
 import gui.Level;
 import main.Launcher;
 
@@ -16,6 +17,7 @@ public class User extends GameCharacter
     private int killCount;
     private boolean attacking;
     private boolean moving;
+    private Top myTop;
     
     public User( Room room, Point p )
     {
@@ -38,6 +40,11 @@ public class User extends GameCharacter
     
     public void update()
     {
+        if(health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        myTop.update(this);
         front = new Point(getLocation().x + dx, getLocation().y + dy);
         if ( attacking )
         {
@@ -63,7 +70,6 @@ public class User extends GameCharacter
         else
         {
             idle();
-            System.out.println(getHealth());
         }
     }
     
@@ -73,6 +79,11 @@ public class User extends GameCharacter
         Level lvl = Launcher.getGame().getLevel();
         lvl.endGame(score);
         
+    }
+    
+    public int getHealth()
+    {
+        return health;
     }
     
     
@@ -114,6 +125,11 @@ public class User extends GameCharacter
         health = maxHealth;
     }
 
+    public int getMaxHealth()
+    {
+        return maxHealth;
+    }
+    
     @Override
     protected void successKill(GameCharacter other)
     {
@@ -134,5 +150,10 @@ public class User extends GameCharacter
     protected boolean isAgainst( Entity other )
     {
         return other instanceof Enemy;
+    }
+    
+    public void setTop(Top newTop)
+    {
+        myTop = newTop;
     }
 }

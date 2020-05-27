@@ -13,7 +13,8 @@ public class Enemy extends GameCharacter
     {
         super(room, p);
         type = "enemy";
-        difficulty = 10 * room.getRoomNum();
+        //difficulty = 10 * room.getRoomNum();
+        difficulty = 10;
         attackDamage = 5 * difficulty;
         health = 15 * difficulty;
         

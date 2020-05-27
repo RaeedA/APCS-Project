@@ -44,6 +44,7 @@ public class Images
     private static ImageIcon right2 = resize(crop(tileSet, 80, 16, 16, 16 ), 32, 32);
     private static ImageIcon right3 = resize(crop(tileSet, 80, 32, 16, 16 ), 32, 32);
     private static ImageIcon right4 = resize(crop(tileSet, 80, 48, 16, 16 ), 32, 32);
+    private static BufferedImage white = crop(tileSet, 143, 111, 1, 1 );
     private static BufferedImage dark = crop(tileSet, 128, 112, 16, 16 );
     private static ImageIcon torch1 = resize(loadImg("main/images/torch_1.png"), 32, 32);
     private static ImageIcon torch2 = resize(loadImg("main/images/torch_2.png"), 32, 32);
@@ -69,6 +70,7 @@ public class Images
     private static BufferedImage full = crop(healthbars, 33, 37, 80, 9);
     private static BufferedImage empty = crop(healthbars, 33, 51, 80, 9);
     private static ImageIcon button = resize(crop(loadImg("main/images/buttons.png"), 0, 16, 34, 16), 134, 50);
+    private static BufferedImage scoreFrame = loadImg("main/images/ScoreFrame.png");
     
     public Images()
     { 
@@ -126,6 +128,15 @@ public class Images
     {
         return button;
     }
+    public static ImageIcon getWhite(int length, int height)
+    {
+        return resize(white, length*32, height*32);
+    }
+    public static ImageIcon getScoreFrame(int size)
+    {
+        return resize(scoreFrame, size*32, size*32);
+    }
+    
     public static ImageIcon combine(ImageIcon bottom, ImageIcon top)
     {
         BufferedImage finalImage = new BufferedImage(bottom.getIconWidth(), bottom.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -143,7 +154,6 @@ public class Images
         g.drawImage(bottom.getImage(), 0, 0, null);
         g.drawImage(top.getImage(), offx, offy, null);
         g.dispose();
-        System.out.println("st");
         return new ImageIcon(finalImage);
     }
 
@@ -155,6 +165,22 @@ public class Images
     public static BufferedImage crop(BufferedImage img, int x, int y, int width, int height)
     {
         return img.getSubimage( x, y, width, height );
+    }
+    
+    public static BufferedImage toBufferedImage(Image img)
+    {
+        if (img instanceof BufferedImage)
+        {
+            return (BufferedImage) img;
+        }
+
+        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+
+        return bimage;
     }
 
     public static BufferedImage loadImg(String path)
