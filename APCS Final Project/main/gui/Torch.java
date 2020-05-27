@@ -9,6 +9,9 @@ public class Torch
     private int num;
     private JLabel label;
     
+    /**
+     * 
+     */
     public Torch()
     {
         ImageIcon wall = Images.getTop()[(int)(Math.random()*4)];
@@ -23,6 +26,9 @@ public class Torch
         label = new JLabel();
     }
     
+    /**
+     * TODO Write your method description here.
+     */
     public void update()
     {
         num++;
@@ -33,6 +39,10 @@ public class Torch
         label.setIcon( images[num] );
     }
     
+    /**
+     * TODO Write your method description here.
+     * @return
+     */
     public JLabel getLabel()
     {
         return label;

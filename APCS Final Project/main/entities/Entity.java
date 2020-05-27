@@ -13,12 +13,19 @@ public abstract class Entity extends Thread
     protected ImageIcon current;
     protected Room room;
     
+    /**
+     * @param r
+     * @param p
+     */
     public Entity(Room r, Point p)
     {
         room = r;
         location = p;
     }
     
+    /* (non-Javadoc)
+     * @see java.lang.Thread#run()
+     */
     @Override
     public abstract void run();
     
