@@ -94,6 +94,7 @@ public abstract class GameCharacter extends Entity
             {
                 iconNum = 0;
             }
+            //System.out.println("wokring..." + facing);
             room.redraw( this, images[iconNum], offx, offy);
             enemy.setHealth( enemy.getHealth() - attackDamage );
             if (enemy.health <= 0)

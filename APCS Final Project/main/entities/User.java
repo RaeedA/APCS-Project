@@ -46,7 +46,6 @@ public class User extends GameCharacter
             health = maxHealth;
         }
         counter--;
-        System.out.println(counter);
         myTop.update(this);
         front = new Point(getLocation().x + dx, getLocation().y + dy);
         if ( attacking )
