@@ -16,14 +16,15 @@ public class User extends GameCharacter
     private int maxHealth;
     private int killCount;
     private boolean attacking;
-    private boolean moving;
+    private int counter = 0;
     private Top myTop;
+    private boolean moving;
     
     public User( Room room, Point p )
     {
         super(room, p);
         type = "user";
-        images = Images.getWarrior();
+        images = Images.getAttackWarrior();
         attackImages = Images.getAttackWarrior();
         image = images[0];
         
@@ -44,11 +45,14 @@ public class User extends GameCharacter
         {
             health = maxHealth;
         }
+        counter--;
+        System.out.println(counter);
         myTop.update(this);
         front = new Point(getLocation().x + dx, getLocation().y + dy);
         if ( attacking )
         {
             attack();
+            counter = 5;
             attacking = false;
         }
         if( moving )
@@ -103,6 +107,10 @@ public class User extends GameCharacter
     }
     public void setAttacking(boolean a)
     {
+        if(counter > 0)
+        {
+            return;
+        }
         attacking = a;
     }
     public boolean isAttacking()

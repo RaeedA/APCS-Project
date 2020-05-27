@@ -18,6 +18,7 @@ public abstract class GameCharacter extends Entity
     protected ImageIcon[] attackImages;
     protected enum Directions{up, down, left, right};
     protected Directions facing;
+    protected boolean attacking;
     
     public GameCharacter(Room room, Point p)
     {
@@ -66,14 +67,14 @@ public abstract class GameCharacter extends Entity
         int offy = 0;
         switch(facing)
         {
-            case up:
+            /*case up:
                 frontEnemy = room.getUpEntity( location );
                 offy = 10;
                 break;
             case down:
                 frontEnemy = room.getDownEntity( location );
                 offy = -10;
-                break;
+                break;*/
             case right:
                 frontEnemy = room.getRightEntity( location );
                 offx = 10;
@@ -121,7 +122,18 @@ public abstract class GameCharacter extends Entity
         {
             iconNum = 0;
         }
-        room.redraw( this, images[ iconNum ]);
+        if(attacking)
+        {
+            room.redraw( this, attackImages[iconNum] );
+            if (this instanceof User)
+            {
+                System.out.println("attacking");
+            }
+        }
+        else
+        {
+            room.redraw( this, images[ iconNum ]);
+        }
     }
     
     public void faceUp()
